@@ -50,7 +50,7 @@ export default async function handler(req, res) {
             accessToken: at,
           });
           console.log(at, "token access");
-          const accessTokenFromDB = await db.collection("orders").findOne({});
+          const accessTokenFromDB = await db.collection("config").findOne({});
           console.log(accessTokenFromDB, "accessTokenFromDB");
           console.log(at, "token access one");
 

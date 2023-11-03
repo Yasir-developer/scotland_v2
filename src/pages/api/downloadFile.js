@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 
   try {
     await client.connect();
-    const database = client.db("scotland-tiles");
+    const database = client.db("scotland-tiles-test");
     const db = await connectToDatabase();
 
     const collection = db.collection("orders");

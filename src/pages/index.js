@@ -180,6 +180,7 @@ export default function Home() {
         // setLoader(false);
 
         if (res.status == 200) {
+          console.log(res, "res");
           if (res.data.data.data.length == 0) {
             setCount("No Result Found");
           }
