@@ -132,18 +132,25 @@ export default async function orderEmail(req, res) {
                     </a>
    
                 <p style="font-size:16px">Here is a link to our Scotland Titles Booklet with lots of information about your new land and title, and some Scottish traditions to help our new Lairds, plus links to download the map and tree planting certificate;</p>
-                <div class="staticUrls" style="display: flex; flex-direction: column">
+                <br/>
+
+                <div>
                     <a href="https://scotlandtitlesapp.com/pdfs/BookletMay2021.pdf" download target="_blank" rel="noreferrer" style="padding-top: 20px">
                     Scotland Titles Booklet
                     </a>
+                    <br/>
                     <a href="https://scotlandtitlesapp.com/pdfs/ScotlandTitlesMap.pdf" download target="_blank" rel="noreferrer" style="padding-top: 20px">
                     Scotland Titles Heritage Map
                     </a>
+                    
+                    <br/>
+
                     <a href="https://scotlandtitlesapp.com/pdfs/TreePlantingCertificate.pdf" download target="_blank" rel="noreferrer" style="padding-top: 20px">
                     Certificate of Tree Planting
                     </a>
    
-   
+                    <br/>
+
    
                 </div>
    
@@ -177,7 +184,7 @@ export default async function orderEmail(req, res) {
    
                 </p>
 
-                <img src="${server}/images/scotland_log.png" alt="Scotland Logo" width="100px" height: "100px" class="logo" style="width: 100px; height: 100px;"/>
+                <img src="${server}/images/scotland_log.png" alt="Scotland Logo" width="130px" height: "130px" class="logo" style="width: 100px; height: 100px;"/>
    
             </div>
    
