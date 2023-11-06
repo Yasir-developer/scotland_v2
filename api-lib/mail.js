@@ -26,7 +26,7 @@ export async function sendMail({ from, to, subject, html }) {
   try {
     await transporter.sendMail({
       from: "alifr849@gmail.com",
-      to: "alifr849@gmail.com",
+      to,
       subject,
       html,
     });
