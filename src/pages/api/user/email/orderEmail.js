@@ -102,8 +102,8 @@ export default async function orderEmail(req, res) {
                 padding-left: 3px
             }
             .logo{
-              width:130px;
-              height:130px
+              width:100px;
+              height:100px
             }
         </style>
     </head>
@@ -128,19 +128,19 @@ export default async function orderEmail(req, res) {
    
                 <p>
                     <a href="https://scotlandtitlesapp.com/pdfs/${order_no}.pdf" download target="_blank" rel="noreferrer">
-                        Digital Pack 11111 Ali ra
+                    Digital Pack ${order_no} ${name}
                     </a>
    
                 <p style="font-size:16px">Here is a link to our Scotland Titles Booklet with lots of information about your new land and title, and some Scottish traditions to help our new Lairds, plus links to download the map and tree planting certificate;</p>
                 <div class="staticUrls">
-                    <a href="https://scotlandtitlesapp.com/pdfs/${order_no}.pdf" download target="_blank" rel="noreferrer">
-                        Digital Pack 11111 Ali ra
+                    <a href="https://scotlandtitlesapp.com/pdfs/BookletMay2021.pdf" download target="_blank" rel="noreferrer">
+                    Scotland Titles Booklet
                     </a>
-                    <a href="https://scotlandtitlesapp.com/pdfs/${order_no}.pdf" download target="_blank" rel="noreferrer">
-                        Digital Pack 11111 Ali ra
+                    <a href="https://scotlandtitlesapp.com/pdfs/$ScotlandTitlesMap.pdf" download target="_blank" rel="noreferrer">
+                    Scotland Titles Heritage Map
                     </a>
-                    <a href="https://scotlandtitlesapp.com/pdfs/${order_no}.pdf" download target="_blank" rel="noreferrer">
-                        Digital Pack 11111 Ali ra
+                    <a href="https://scotlandtitlesapp.com/pdfs/TreePlantingCertificate.pdf" download target="_blank" rel="noreferrer">
+                    Certificate of Tree Planting
                     </a>
    
    
@@ -177,7 +177,7 @@ export default async function orderEmail(req, res) {
    
                 </p>
 
-                <img src="${server}/images/scotland_log.png" alt="Scotland Logo" class="logo" style="width:130px, height:100px"/>
+                <img src="${server}/images/scotland_log.png" alt="Scotland Logo" width="100px" height: "100px" class="logo" style="width: 100px; height: 100px;"/>
    
             </div>
    
