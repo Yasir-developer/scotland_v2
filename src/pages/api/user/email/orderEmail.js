@@ -132,9 +132,7 @@ export default async function orderEmail(req, res) {
                     </a>
    
                 <p style="font-size:16px">Here is a link to our Scotland Titles Booklet with lots of information about your new land and title, and some Scottish traditions to help our new Lairds, plus links to download the map and tree planting certificate;</p>
-                <div class="staticUrls" style="  display: flex;
-                flex-direction: column;
-                ">
+                <div class="staticUrls" style="display: flex; flex-direction: column">
                     <a href="https://scotlandtitlesapp.com/pdfs/BookletMay2021.pdf" download target="_blank" rel="noreferrer" style="padding-top: 20px">
                     Scotland Titles Booklet
                     </a>
