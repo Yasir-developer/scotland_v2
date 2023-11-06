@@ -177,7 +177,7 @@ export default async function orderEmail(req, res) {
    
                 </p>
 
-                <img src="${server}/images/scotland_log.png" alt="Scotland Logo" class="logo" style="width=130px, height:130px"/>
+                <img src="${server}/images/scotland_log.png" alt="Scotland Logo" class="logo" style="width:130px, height:100px"/>
    
             </div>
    
