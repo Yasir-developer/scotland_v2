@@ -101,13 +101,16 @@ export default async function orderEmail(req, res) {
             .left {
                 padding-left: 3px
             }
+            .logo{
+              width:130px;
+              height:130px
+            }
         </style>
     </head>
    
     <body>
         <div class="container">
             <div class="header">
-                <img src="${server}/images/logo.png" alt="Sample Image" />
    
                
                     <span class="dentText" style="color:#000000">Dear Ali ra</span>
@@ -174,7 +177,7 @@ export default async function orderEmail(req, res) {
    
                 </p>
 
-                <img src="${server}/images/scotland_log.png" alt="Scotland Logo" />
+                <img src="${server}/images/scotland_log.png" alt="Scotland Logo" class="logo" style="width=130px, height:130px"/>
    
             </div>
    
