@@ -139,9 +139,11 @@ export default async function orderEmail(req, res) {
                     Scotland Titles Booklet
                     </a>
                     <br/>
+                    <br/>
                     <a href="https://scotlandtitlesapp.com/pdfs/ScotlandTitlesMap.pdf" download target="_blank" rel="noreferrer" style="padding-top: 20px">
                     Scotland Titles Heritage Map
                     </a>
+                    <br/>
                     
                     <br/>
 
