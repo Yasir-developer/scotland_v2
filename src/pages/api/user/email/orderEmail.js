@@ -54,7 +54,7 @@ export default async function orderEmail(req, res) {
 <!--                 text-align: center; -->
           }
           .content {
-              padding: 10px;
+              padding-top: 20px;
           }
         .headerText{
         font-size:20px;
@@ -64,6 +64,8 @@ export default async function orderEmail(req, res) {
         .dentText{
         color:#000000
         font-weight: bold;
+        font-size:16px;
+
         }
         .heading{
         color:#d6d3cc;
@@ -83,26 +85,32 @@ export default async function orderEmail(req, res) {
         
             <h1 class="headerText" style="font-size:20px; color:#000000">Hello 
                  <span class="dentText" style="color:#000000">Dear ${name}</span></h1>
-                 <span class="dentText" style="color:#000000, font-weight: bold;">Welcome To Scotland</span></h1>
+                 <span class="dentText" style="color:#000000, font-weight: bold">Welcome To Scotland</span></h1>
 
-                 <a
-                 href="https://scotlandtitlesapp.com/pdfs/${order_no}.pdf"
-                 download
-                 target="_blank"
-                 rel="noreferrer"
-               >
-               Digital Pack ${order_no} ${name}
-               </a>
+             
                
           </div>
           <div class="content">
 
-           
+             <p  class="footerText" style="text-align:center; color:#fff; font-size:14px; background-color:#001323">
+             Thank you for your order. We are pleased to provide you with the following link to download your Digital Pack;
+
+
+                  <p>
+
+                  <a
+                  href="https://scotlandtitlesapp.com/pdfs/${order_no}.pdf"
+                  download
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                Digital Pack ${order_no} ${name}
+                </a>
           </div>
 
           <footer style="height:20px; background-color:#001323; width:600px; align-items:center; justify-content:center">
           <p  class="footerText" style="text-align:center; color:#fff; font-size:14px; background-color:#001323"  >
-                  © Copyright 2023 Dentfolio. All Rights Reserved.
+                  © Copyright 2023. All Rights Reserved.
                   <p>
             </footer>
       </div>
