@@ -2,10 +2,9 @@ import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import fs from "fs";
 import * as ftp from "basic-ftp";
 import { Readable } from "stream";
-// import doctorimg from "../../../../public/images/doctor-2.jpg";
 import path from "path";
 import fontkit from "@pdf-lib/fontkit";
-import { pid } from "process";
+import { server } from "../../../../config";
 
 export default async function handler(req, res) {
   const titlePackId = 8727183196433;
@@ -26,6 +25,7 @@ export default async function handler(req, res) {
   });
 
   const { id, email, created_at, order_number } = req.body;
+  const { first_name, last_name } = req.body.customer;
 
   const pdfDoc = await PDFDocument.create();
   const pdfDocPrinted = await PDFDocument.create();
@@ -87,6 +87,28 @@ export default async function handler(req, res) {
   // );
 
   //=========================== end global variables ===========================
+  const emailPdfs = async () => {
+    // console.log(user, "user in verify email");
+    try {
+      const response = await fetch(
+        `${server}/api/user/email/orderEmail?email=${email}&name=${
+          first_name + last_name
+        }&order_no=${order_number}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      return;
+      // console.log(response, "response for email verify");
+      // emailRef.current.openEmailModal();
+    } catch (e) {
+      console.log(e.message, "Order Email Fetch error");
+      // toast.error(e.message);
+    } finally {
+      // setIsLoading(false);
+    }
+  };
 
   const titlePack = async (propObject) => {
     let titleConditions;
@@ -16139,6 +16161,7 @@ export default async function handler(req, res) {
   let typeTwo;
 
   if (email && req.body.line_items.length > 0) {
+    // console.log(req.body.customer.last_name, "Order Complete Request");
     try {
       let pId = [];
       let pProperties = {};
@@ -16599,8 +16622,11 @@ export default async function handler(req, res) {
         const pdfPrintedUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}-printed.pdf`;
         console.log(pdfPrintedUrl, "pdfPrintedUrl");
       }
+      console.log(order_number, "in order");
+      await emailPdfs();
 
       return res.status(200).send({ data: "success pdf" });
+      return;
     } catch (error) {
       console.log(error, "catch error final");
       return res.status(200).send({ message: "error" });
