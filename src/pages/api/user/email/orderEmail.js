@@ -17,105 +17,184 @@ export default async function orderEmail(req, res) {
 
     // console.log(req, "reqqqqqq");
     const db = await connectToDatabase();
-    // const collection = db.collection("config");
-    // const accessToken = await collection.findOne({});
-    // console.log(req, "complete Requestr");
+
     const { email, name, order_no } = req.query;
     console.log(order_no, "order_number in order Email");
 
-    // console.log(email, name, "Email and Names");
-    //   const token = await createToken(req.db, {
-    //     creatorId: new ObjectId(id),
-    //     type: 'emailVerify',
-    //     expireAt: new Date(Date.now() + 1000 * 60 * 60 * 24),
-    //   });
     const emailTemplate = `
-  <!DOCTYPE html>
-  <html>
-  <head>
-      <style>
-          body {
-              font-family: Arial, sans-serif;
-              background-color: #f4f4f4;
-              margin: 0;
-              padding: 0;
-          }
-          .container {
-              max-width: 600px;
-              margin: 0 auto;
-              padding: 20px;
-              background-color: #ffffff;
-          }
-          .header {
-<!--                 background-color: #007bff; -->
-              color: #ffffff;
-              padding: 10px;
-<!--           width:100px -->
-<!--                 text-align: center; -->
-          }
-          .content {
-              padding-top: 20px;
-          }
-        .headerText{
-        font-size:20px;
-<!--           font-style:bold -->
-        color:#000000
-        }
-        .dentText{
-        color:#000000
-        font-weight: bold;
-        font-size:16px;
-
-        }
-        .heading{
-        color:#d6d3cc;
-         font-weight: bold;
-        }
-        .footer{
-          height:20px; background-color:#001323; width:600px; align-items:center; justify-content:center
-        }
-        .footerText{
-          text-align:center; color:#fff; font-size:14px; background-color:#001323        }
-      </style>
-  </head>
-  <body>
-      <div class="container">
-          <div class="header">
-          <img src="${server}/images/logo.png" alt="Sample Image" />
-        
-            <h1 class="headerText" style="font-size:20px; color:#000000">Hello 
-                 <span class="dentText" style="color:#000000">Dear ${name}</span></h1>
-                 <span class="dentText" style="color:#000000, font-weight: bold">Welcome To Scotland</span></h1>
-
-             
+    <!DOCTYPE html>
+    <html>
+   
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+            }
+   
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #ffffff;
+            }
+   
+            .header {
+                < !-- background-color: #007bff;
+                -->color: #ffffff;
+                padding: 10px;
+                < !-- width: 100px --> < !-- text-align: center;
+                -->
+            }
+   
+            .content {
+                padding-top: 10px;
+            }
+   
+            .headerText {
+                font-size: 20px;
+                < !-- font-style: bold --> color:#000000
+            }
+   
+            .welcomeText {
+                font-weight: bold
+            }
+   
+            .dentText {
+                color: #000000 font-weight: bold;
+                font-size: 16px;
+   
+            }
+   
+            .heading {
+                color: #d6d3cc;
+                font-weight: bold;
+            }
+   
+            .staticUrls a {
+                display: flex;
+                flex-direction: column;
+                padding-top: 20px
+            }
+                    .footerTexts a {
+                display: flex;
+                flex-direction: column;
+                padding-top: 15px
+            }
+   
+            .rowClass {
+                display: flex;
+                flex-direction: row;
+            }
+   
+   
+            .footer {
+                justify-content: center
+            }
+   
+            .footerText {
+                font-size: 14px;
+            }
+   
+            .left {
+                padding-left: 3px
+            }
+        </style>
+    </head>
+   
+    <body>
+        <div class="container">
+            <div class="header">
+                <img src="${server}/images/logo.png" alt="Sample Image" />
+   
                
-          </div>
-          <div class="content">
+                    <span class="dentText" style="color:#000000">Dear Ali ra</span>
+   
+   
+   
+   
+            </div>
+            <p class="welcomeText">
+                Welcome To Scotland!</span></p>
+            <div class="content">
+                <p class="footerText" style="font-size:16px;">
+                    Thank you for your order. We are pleased to provide you with the following link to download your Digital Pack;
+   
+   
+                <p>
+                    <a href="https://scotlandtitlesapp.com/pdfs/${order_no}.pdf" download target="_blank" rel="noreferrer">
+                        Digital Pack 11111 Ali ra
+                    </a>
+   
+                <p style="font-size:16px">Here is a link to our Scotland Titles Booklet with lots of information about your new land and title, and some Scottish traditions to help our new Lairds, plus links to download the map and tree planting certificate;</p>
+                <div class="staticUrls">
+                    <a href="https://scotlandtitlesapp.com/pdfs/${order_no}.pdf" download target="_blank" rel="noreferrer">
+                        Digital Pack 11111 Ali ra
+                    </a>
+                    <a href="https://scotlandtitlesapp.com/pdfs/${order_no}.pdf" download target="_blank" rel="noreferrer">
+                        Digital Pack 11111 Ali ra
+                    </a>
+                    <a href="https://scotlandtitlesapp.com/pdfs/${order_no}.pdf" download target="_blank" rel="noreferrer">
+                        Digital Pack 11111 Ali ra
+                    </a>
+   
+   
+   
+                </div>
+   
+                <p style="font-size:16px">If your order included a Printed Pack, then it will be dispatched shortly. Please note that during the current busy period it is possible that shipping may take longer than usual due to carrier circumstances out with our control.
+   
+                </p>
+   
+                <p style="font-size:16px">We ask that you check your documents carefully, and if there are any issues with the details contained within then please let us know by replying to this email and we will swiftly emend accordingly and re-issue to you.
+   
+   
+   
+                </p>
+                <div>
+                    <p style="font-size:16px,   display:flex;
+                  flex-direction:row;" class="rowClass">If you require any further assistance, then please email us at <a style="padding-left:3px" class="left" href="https://scotlandtitlesapp.com/pdfs/${order_no}.pdf" download target="_blank" rel="noreferrer"> info@scotlandtitles.com</a>
+   
+                    </p>
+   
+                </div>
+   
+                <p style="font-size:16px">
+                    Thank you once again for your order.
+   
+                </p>
+                <p style="font-size:16px">
+                    Kind regards
+   
+                </p>
+                <p style="font-size:16px">
+                    Scotland Titles
+   
+                </p>
 
-             <p  class="footerText" style="text-align:center; color:#fff; font-size:14px; background-color:#001323">
-             Thank you for your order. We are pleased to provide you with the following link to download your Digital Pack;
-
-
-                  <p>
-
-                  <a
-                  href="https://scotlandtitlesapp.com/pdfs/${order_no}.pdf"
-                  download
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                Digital Pack ${order_no} ${name}
-                </a>
-          </div>
-
-          <footer style="height:20px; background-color:#001323; width:600px; align-items:center; justify-content:center">
-          <p  class="footerText" style="text-align:center; color:#fff; font-size:14px; background-color:#001323"  >
-                  © Copyright 2023. All Rights Reserved.
-                  <p>
+                <img src="${server}/images/scotland_log.png" alt="Scotland Logo" />
+   
+            </div>
+   
+            <footer>
+                <div class="rowClass footerTexts">
+                    <p>Website:</p><a  style="padding-left:3px" class="left" href="www.ScotlandTitles.com" target="_blank"> www.ScotlandTitles.com</a>
+                </div>
+              
+              <div class="rowClass footerTexts">
+                    <p>Facebook:</p><a style="padding-left:3px" class="left" href="www.ScotlandTitles.com" target="_blank">fb.me/ScotlandTitles</a>
+                </div>
+              
+              <div class="rowClass footerTexts">
+                    <p>Email:</p><a style="padding-left:3px" class="left" href="www.ScotlandTitles.com" target="_blank">info@ScotlandTitles.com</a>
+                </div>
             </footer>
-      </div>
-  </body>
-  </html>
+        </div>
+    </body>
+   
+    </html>
     `;
 
     await sendMail({
