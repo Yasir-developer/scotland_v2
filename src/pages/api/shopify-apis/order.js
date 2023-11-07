@@ -101,6 +101,7 @@ export default async function handler(req, res) {
       console.log(e.message, "Order Email Fetch error");
       // toast.error(e.message);
     } finally {
+      return res.status(200).send({ message: "finally" });
       // setIsLoading(false);
     }
   };
