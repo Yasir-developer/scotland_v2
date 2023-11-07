@@ -99,7 +99,10 @@ export default async function handler(req, res) {
         console.log(res, "complete respons=========================");
       });
     } catch (e) {
-      // console.log(e.message, "Order Email Fetch error");
+      console.log(
+        e.message,
+        "===============Order Email Fetch error================="
+      );
       // toast.error(e.message);
     } finally {
       // return res.status(200).send({ message: "finally" });
