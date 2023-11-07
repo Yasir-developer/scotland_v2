@@ -9,7 +9,7 @@ import { server } from "../../../../config";
 export default async function handler(req, res) {
   const titlePackId = 8727183196433;
   const emblemId = 8727183065361;
-  const tartanId = 8727182770449;
+  const tartanId = 8727183032593;
   const freeTartanId = 8727182704913;
   const freeEmblemId = 8950348644625;
 
@@ -15072,7 +15072,7 @@ export default async function handler(req, res) {
   const onlyTartan = async (propObject) => {
     // console.log(propObject, "===============propObject==================");
     try {
-      if (propObject.p_8727182770449.variant.includes("Printed Pack")) {
+      if (propObject.p_8727183032593.variant.includes("Printed Pack")) {
         var tartanCertificatePrinted = pdfDocPrinted.addPage([595, 842]);
         var tartanCertificate = pdfDoc.addPage([595, 842]);
       } else {
@@ -15083,7 +15083,7 @@ export default async function handler(req, res) {
 
       //Name Capital work
 
-      let tartanNameParts = propObject.p_8727182770449._Name1.split(" ");
+      let tartanNameParts = propObject.p_8727183032593._Name1.split(" ");
       console.log(tartanNameParts, "nameParts");
       let tartanModifiedName = tartanNameParts
         .map(
@@ -15093,8 +15093,8 @@ export default async function handler(req, res) {
       console.log(tartanModifiedName, "modified name");
 
       //two name
-      if (propObject.p_8727182770449._Title2) {
-        let tartanNamePartsTwo = propObject.p_8727182770449._Name2.split(" ");
+      if (propObject.p_8727183032593._Title2) {
+        let tartanNamePartsTwo = propObject.p_8727183032593._Name2.split(" ");
         var tartanModifiedNameTwo = tartanNamePartsTwo
           .map(
             (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
@@ -15104,8 +15104,8 @@ export default async function handler(req, res) {
       }
 
       const tartanCertficateUserName = `${
-        propObject.p_8727182770449._Title1
-      } ${tartanModifiedName} ${propObject.p_8727182770449._Title2 ? "&" : ""}`;
+        propObject.p_8727183032593._Title1
+      } ${tartanModifiedName} ${propObject.p_8727183032593._Title2 ? "&" : ""}`;
       const userNametextWidth = oldEng.widthOfTextAtSize(
         tartanCertficateUserName,
         12
@@ -15117,8 +15117,8 @@ export default async function handler(req, res) {
       const x = startingPosition - halfOfWord;
 
       const tartanCertficateUserNameTwo = `${
-        propObject.p_8727182770449._Title2
-          ? `${propObject.p_8727182770449._Title2} ${tartanModifiedNameTwo}`
+        propObject.p_8727183032593._Title2
+          ? `${propObject.p_8727183032593._Title2} ${tartanModifiedNameTwo}`
           : ""
       }`;
 
@@ -15132,7 +15132,7 @@ export default async function handler(req, res) {
         (tartanCertificate.getWidth() - tartanuserNameTwotextWidth) / 2;
       const tartanTwox = tartanStartingPositionTwo - tartanHalfOfWordTwo;
       const declare = `${
-        propObject.p_8727182770449._Title2 ? "Do" : "Does"
+        propObject.p_8727183032593._Title2 ? "Do" : "Does"
       } Declare`;
       const Allegiance = "Clan Allegiance";
       const prey = "and Prey to Wear";
@@ -15147,15 +15147,15 @@ export default async function handler(req, res) {
 
       const tartanCertificateknowText = `that the said by virtue of ownership`;
       const tartanCertificateknowTextTwo = `of Land in Scotland and in particular the Land within the\nKingdom of Fife by Cantsdam as described in the Disposition\nand Certificate of Sale, the ${
-        propObject.p_8727182770449._Title2 ? "Petitioner are" : "Petitioner is"
+        propObject.p_8727183032593._Title2 ? "Petitioner are" : "Petitioner is"
       } henceforth and in\nperpetuity amongst all nobles and in all places of honour, to\nbe taken, numbered, accounted and received as a ${
-        propObject.p_8727182770449._Title2 ? "Lairds" : "Laird"
+        propObject.p_8727183032593._Title2 ? "Lairds" : "Laird"
       } of\nScotland,\n\n`;
 
       const Therefore = "Know Ye Therefore";
 
       const tartanCertificateThereforeText = `that the ${
-        propObject.p_8727182770449._Title2 ? "Petitioners" : "Petitioner"
+        propObject.p_8727183032593._Title2 ? "Petitioners" : "Petitioner"
       } having preyed`;
       const tartanCertificateThereforeTextTwo = `that there might be granted unto them to use such Scottish\nTartan as set in law during the dress act of 1746 as repealed in\n1782 and thereinafter adopted, acknowledged and recognised\nas the symbolic National Dress of Scotland,\n\n`;
 
@@ -15163,9 +15163,9 @@ export default async function handler(req, res) {
 
       const tartanCertificateScotlantTilesText = `has assigned, and do`;
       const tartanCertificateScotlantTilesTextTwo = `by these presents assign, ratify and confirm unto the ${
-        propObject.p_8727182770449._Title2 ? "Petitioners" : "Petitioner"
+        propObject.p_8727183032593._Title2 ? "Petitioners" : "Petitioner"
       }\nthe following ensemble robes in such tartan as is depicted\nupon the margin sinister hereof, and award unto the\n${
-        propObject.p_8727182770449._Title2 ? "Petitioners" : "Petitioner"
+        propObject.p_8727183032593._Title2 ? "Petitioners" : "Petitioner"
       } the rights to use, wear, display and earasay such\nregistered Scottish Tartan in exchange for their sworn\nallegiance to the Clan of Scotland,\n\n`;
 
       const Tartan = "Videlicet such Tartan";
@@ -15176,18 +15176,18 @@ export default async function handler(req, res) {
 
       const demonstrationText = " which ensemble robes the said";
       const demonstrationTextTwo = `${
-        propObject.p_8727182770449._Title2 ? "Petitioner are" : "Petitioner is"
+        propObject.p_8727183032593._Title2 ? "Petitioner are" : "Petitioner is"
       }, amongst all nobles and in all places of honour, to\nbe received as a ${
-        propObject.p_8727182770449._Title2 ? "Lairds" : "Laird"
+        propObject.p_8727183032593._Title2 ? "Lairds" : "Laird"
       } of Scotland,`; //Signed content
 
       const tartanFurther = "Furthermore by ownership";
       const tartanFurtherDescription = "of lands in Scotland, the";
-      const tartanFurtherDescriptionTwo = `${propObject.p_8727182770449._Title1}, in such display of the proscribed ensemble robes are to\nbe received with honour in all of Scotland,`;
+      const tartanFurtherDescriptionTwo = `${propObject.p_8727183032593._Title1}, in such display of the proscribed ensemble robes are to\nbe received with honour in all of Scotland,`;
 
       const tartanTestimony = "In Testimony whereof";
       const tartanTestimonyDescription = "we have subscribed these";
-      const tartanTestimonyDescriptionTwo = `presents and the seal of our office is affixed hereto at Scotland\nTitles this day in this year of the reign of our sovereign Charles\nthe Third, by the Grace of God, of the United Kingdom of\nGreat Britain and Northern Ireland, King, Head of the\nCommonwealth, Defender of the Faith, and in the Year of our\n${propObject.p_8727182770449._Title1} stated henceforth.`;
+      const tartanTestimonyDescriptionTwo = `presents and the seal of our office is affixed hereto at Scotland\nTitles this day in this year of the reign of our sovereign Charles\nthe Third, by the Grace of God, of the United Kingdom of\nGreat Britain and Northern Ireland, King, Head of the\nCommonwealth, Defender of the Faith, and in the Year of our\n${propObject.p_8727183032593._Title1} stated henceforth.`;
 
       const tartanSigned = "Signed";
 
@@ -15261,7 +15261,7 @@ export default async function handler(req, res) {
 
       const stampPngDims = stampImg.scale(0.3);
 
-      if (propObject.p_8727182770449.variant.includes("Printed Pack")) {
+      if (propObject.p_8727183032593.variant.includes("Printed Pack")) {
         var textWidth = tartanCertificatePrinted.getWidth() - 100; // Adjust the width as needed
         var textHeight = tartanCertificatePrinted.getHeight() - 50;
       } else {
@@ -15271,7 +15271,7 @@ export default async function handler(req, res) {
 
       const dateText = "Date";
 
-      const tartandatee = propObject.p_8727182770449._Date;
+      const tartandatee = propObject.p_8727183032593._Date;
       const tartandateObj = new Date(tartandatee);
       const tartanyear = tartandateObj.getFullYear();
       const tartanmonth = String(tartandateObj.getMonth() + 1).padStart(2, "0"); // Adding 1 because months are 0-indexed
@@ -15370,7 +15370,7 @@ export default async function handler(req, res) {
 
       tartanCertificate.drawText(declare, {
         x: 250,
-        y: propObject.p_8727182770449._Title2 ? 665 : 690,
+        y: propObject.p_8727183032593._Title2 ? 665 : 690,
         size: 16,
         width: textWidth,
         height: textHeight,
@@ -15381,7 +15381,7 @@ export default async function handler(req, res) {
 
       tartanCertificate.drawText(Allegiance, {
         x: 50,
-        y: propObject.p_8727182770449._Title2 ? 640 : 660,
+        y: propObject.p_8727183032593._Title2 ? 640 : 660,
         size: 26,
         width: textWidth,
         height: textHeight,
@@ -15392,7 +15392,7 @@ export default async function handler(req, res) {
 
       tartanCertificate.drawText(prey, {
         x: 230,
-        y: propObject.p_8727182770449._Title2 ? 640 : 660,
+        y: propObject.p_8727183032593._Title2 ? 640 : 660,
         size: 18,
         width: textWidth,
         height: textHeight,
@@ -15403,7 +15403,7 @@ export default async function handler(req, res) {
 
       tartanCertificate.drawText(certified, {
         x: 370,
-        y: propObject.p_8727182770449._Title2 ? 640 : 660,
+        y: propObject.p_8727183032593._Title2 ? 640 : 660,
         size: 26,
         width: textWidth,
         height: textHeight,
@@ -15415,7 +15415,7 @@ export default async function handler(req, res) {
 
       tartanCertificate.drawImage(certificateMid, {
         x: 230,
-        y: propObject.p_8727182770449._Title2 ? 600 : 610,
+        y: propObject.p_8727183032593._Title2 ? 600 : 610,
         width: ertificateMidpngDims.width,
         height: ertificateMidpngDims.height,
       });
@@ -15728,7 +15728,7 @@ export default async function handler(req, res) {
 
       //========================================== Tartan Printed Work Started ================================
 
-      if (propObject.p_8727182770449.variant.includes("Printed Pack")) {
+      if (propObject.p_8727183032593.variant.includes("Printed Pack")) {
         tartanCertificatePrinted.drawImage(tartan_borders, {
           y: 790,
           width: tartanCertificatePrinted.getWidth(),
@@ -15783,7 +15783,7 @@ export default async function handler(req, res) {
 
         tartanCertificatePrinted.drawText(declare, {
           x: 250,
-          y: propObject.p_8727182770449._Title2 ? 665 : 690,
+          y: propObject.p_8727183032593._Title2 ? 665 : 690,
           size: 16,
           width: textWidth,
           height: textHeight,
@@ -15794,7 +15794,7 @@ export default async function handler(req, res) {
 
         tartanCertificatePrinted.drawText(Allegiance, {
           x: 50,
-          y: propObject.p_8727182770449._Title2 ? 640 : 660,
+          y: propObject.p_8727183032593._Title2 ? 640 : 660,
           size: 26,
           width: textWidth,
           height: textHeight,
@@ -15805,7 +15805,7 @@ export default async function handler(req, res) {
 
         tartanCertificatePrinted.drawText(prey, {
           x: 230,
-          y: propObject.p_8727182770449._Title2 ? 640 : 660,
+          y: propObject.p_8727183032593._Title2 ? 640 : 660,
           size: 18,
           width: textWidth,
           height: textHeight,
@@ -15816,7 +15816,7 @@ export default async function handler(req, res) {
 
         tartanCertificatePrinted.drawText(certified, {
           x: 370,
-          y: propObject.p_8727182770449._Title2 ? 640 : 660,
+          y: propObject.p_8727183032593._Title2 ? 640 : 660,
           size: 26,
           width: textWidth,
           height: textHeight,
@@ -15828,7 +15828,7 @@ export default async function handler(req, res) {
 
         tartanCertificatePrinted.drawImage(certificateMidPrinted, {
           x: 230,
-          y: propObject.p_8727182770449._Title2 ? 600 : 610,
+          y: propObject.p_8727183032593._Title2 ? 600 : 610,
           width: ertificateMidpngDims.width,
           height: ertificateMidpngDims.height,
         });
@@ -16408,18 +16408,18 @@ export default async function handler(req, res) {
         } else if (productId == tartanId) {
           for (
             let i = 0;
-            i < pProperties[`p_8727182770449_${tartanIncrement}`].quantity;
+            i < pProperties[`p_8727183032593_${tartanIncrement}`].quantity;
             i++
           ) {
             let resultObjectTatran = {};
             let namesArrayTatran = "";
 
-            if (pProperties[`p_8727182770449_${tartanIncrement}`].properties) {
+            if (pProperties[`p_8727183032593_${tartanIncrement}`].properties) {
               namesArrayTatran = pProperties[
-                `p_8727182770449_${tartanIncrement}`
+                `p_8727183032593_${tartanIncrement}`
               ].properties.map((propItem, index) => propItem.name);
               for (const obj of pProperties[
-                `p_8727182770449_${tartanIncrement}`
+                `p_8727183032593_${tartanIncrement}`
               ].properties) {
                 resultObjectTatran[obj.name] = obj.value;
               }
@@ -16429,26 +16429,26 @@ export default async function handler(req, res) {
               !namesArrayTatran.includes("_Title2") // resultObjectTitlePack._Title1 == "Lord" &&
             ) {
               const propertiesObj = {
-                p_8727182770449: {
+                p_8727183032593: {
                   _Title1: resultObjectTatran._Title1,
                   _Name1: resultObjectTatran._name1,
                   _Date: resultObjectTatran._Date,
                   variant:
-                    pProperties[`p_8727182770449_${tartanIncrement}`]
+                    pProperties[`p_8727183032593_${tartanIncrement}`]
                       .variant_title,
                 },
               };
               onlyTartan(propertiesObj);
             } else {
               const propertiesObj = {
-                p_8727182770449: {
+                p_8727183032593: {
                   _Title1: resultObjectTatran._Title1,
                   _Name1: resultObjectTatran._name1,
                   _Title2: resultObjectTatran._Title2,
                   _Name2: resultObjectTatran._name2,
                   _Date: resultObjectTatran._Date,
                   variant:
-                    pProperties[`p_8727182770449_${tartanIncrement}`]
+                    pProperties[`p_8727183032593_${tartanIncrement}`]
                       .variant_title,
                 },
               };
@@ -16591,7 +16591,6 @@ export default async function handler(req, res) {
       pdfStream.push(null); // End of stream
 
       const remotePath = `/pdfs/${order_number}.pdf`;
-      console.log(remotePath, "=============remotePath==============");
       await client.uploadFrom(pdfStream, remotePath);
       const pageCount = pdfDocPrinted.getPageCount();
 
