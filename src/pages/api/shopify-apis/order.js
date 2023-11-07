@@ -95,9 +95,13 @@ export default async function handler(req, res) {
           method: "POST",
           headers: { "Content-Type": "application/json" },
         }
-      ).then((res) => {
-        console.log(res, "complete respons=========================");
-      });
+      )
+        .then((res) => {
+          console.log(res, "complete respons=========================");
+        })
+        .catch(() => {
+          console.log(err, "complete respons=========================");
+        });
     } catch (e) {
       console.log(
         e.message,
@@ -16630,10 +16634,6 @@ export default async function handler(req, res) {
       return res.status(200).send({ message: "error" });
     }
   } else {
-    console.log(email);
-    console.log("error found ------------");
-    console.log(req.body.line_items.length);
-    console.log("error found ------------");
     return res.status(200).send({ message: "error" });
   }
 }
