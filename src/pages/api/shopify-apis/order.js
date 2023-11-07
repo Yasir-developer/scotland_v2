@@ -82,9 +82,6 @@ export default async function handler(req, res) {
     StandardFonts.TimesRomanItalic,
     { subset: true }
   );
-  // const timesRomanItalicFontHeading = await pdfDoc.embedFont(
-  //   StandardFonts.TimesRomanItalic
-  // );
 
   //=========================== end global variables ===========================
   const emailPdfs = async () => {
@@ -16600,7 +16597,6 @@ export default async function handler(req, res) {
       const pdfUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}.pdf`;
 
       console.log(pdfUrl, "pdfUrl");
-      await emailPdfs();
 
       //for printed page
       console.log(pageCount, "pageCount");
@@ -16621,6 +16617,7 @@ export default async function handler(req, res) {
         console.log(pdfPrintedUrl, "pdfPrintedUrl");
       }
       console.log(order_number, "in order");
+      await emailPdfs();
 
       return res.status(200).send({ data: "success pdf" });
       return;
