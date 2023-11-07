@@ -84,10 +84,10 @@ export default async function handler(req, res) {
   );
 
   //=========================== end global variables ===========================
-  const emailPdfs = async () => {
+  const emailPdfs = () => {
     // console.log(user, "user in verify email");
     try {
-      const response = await fetch(
+      const response = fetch(
         `${server}/api/user/email/orderEmail?email=${email}&name=${
           first_name ? first_name : last_name
         }&order_no=${order_number}`,
@@ -95,7 +95,9 @@ export default async function handler(req, res) {
           method: "POST",
           headers: { "Content-Type": "application/json" },
         }
-      );
+      ).then((res) => {
+        console.log(res, "complete respons=========================");
+      });
     } catch (e) {
       // console.log(e.message, "Order Email Fetch error");
       // toast.error(e.message);
