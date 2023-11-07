@@ -84,10 +84,10 @@ export default async function handler(req, res) {
   );
 
   //=========================== end global variables ===========================
-  const emailPdfs = () => {
+  const emailPdfs = async () => {
     // console.log(user, "user in verify email");
     try {
-      const response = fetch(
+      const response = await fetch(
         `${server}/api/user/email/orderEmail?email=${email}&name=${
           first_name ? first_name : last_name
         }&order_no=${order_number}`,
