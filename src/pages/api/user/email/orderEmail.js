@@ -194,7 +194,7 @@ export default async function orderEmail(req, res) {
           <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:0px 50px 10px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div class="v-text-align v-font-size" style="font-size: 17px; line-height: 140%; text-align: center; word-wrap: break-word;">
-        <div><span style="color: #000000; line-height: 23.8px;">Dear yasiriq</span></div>
+        <div><span style="color: #000000; line-height: 23.8px;">Dear ${name}</span></div>
     <p style="line-height: 140%;">Welcome To Scotland!</p>
     <div>
     <p style="color: #222222; white-space: normal; background-color: #ffffff; line-height: 140%;">Thank you for your order. We are pleased to provide you with the following link to download your Digital Pack;</p>
