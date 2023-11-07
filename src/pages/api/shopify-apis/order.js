@@ -84,7 +84,7 @@ export default async function handler(req, res) {
   );
 
   //=========================== end global variables ===========================
-  const emailPdfs = () => {
+  const emailPdfs = async () => {
     // console.log(user, "user in verify email");
     try {
       const response = fetch(
