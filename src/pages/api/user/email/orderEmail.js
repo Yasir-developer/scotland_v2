@@ -142,7 +142,7 @@ export default async function orderEmail(req, res) {
       <tr>
         <td class="v-text-align" style="padding-right: 0px;padding-left: 0px;" align="center">
           
-          <img align="center" border="0" src="images/image-3.png" alt="image" title="image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 23%;max-width: 133.4px;" width="133.4" class="v-src-width v-src-max-width"/>
+          <img align="center" border="0" src="${server}/images/scotland_log.png" alt="Scotland-Logo" title="image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 23%;max-width: 133.4px;" width="133.4" class="v-src-width v-src-max-width"/>
           
         </td>
       </tr>
@@ -257,7 +257,7 @@ export default async function orderEmail(req, res) {
       <tr>
         <td class="v-text-align" style="padding-right: 0px;padding-left: 0px;" align="center">
           
-          <img align="center" border="0" src="images/image-4.jpeg" alt="image" title="image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 600px;" width="600" class="v-src-width v-src-max-width"/>
+          <img align="center" border="0" src="${server}/images/docs.jpeg" alt="image" title="image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 600px;" width="600" class="v-src-width v-src-max-width"/>
           
         </td>
       </tr>
@@ -458,7 +458,7 @@ export default async function orderEmail(req, res) {
         <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 10px">
           <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
             <a href="https://www.facebook.com/ScotlandTitles/" title="Facebook" target="_blank">
-              <img src="images/image-1.png" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+              <img src="${server}/images/facebook.png" alt="Facebook" title="Facebook" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
             </a>
           </td></tr>
         </tbody></table>
@@ -468,7 +468,7 @@ export default async function orderEmail(req, res) {
         <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="width: 32px !important;height: 32px !important;display: inline-block;border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;margin-right: 0px">
           <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
             <a href="https://mailto:info@scotlandtitles.com" title="Email" target="_blank">
-              <img src="images/image-2.png" alt="Email" title="Email" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
+              <img src="${server}/images/ibox.png"" alt="Email" title="Email" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
             </a>
           </td></tr>
         </tbody></table>
