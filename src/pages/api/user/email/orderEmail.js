@@ -113,7 +113,7 @@ export default async function orderEmail(req, res) {
             <div class="header">
    
                
-                    <span class="dentText" style="color:#000000">Dear Ali ra</span>
+                    <span class="dentText" style="color:#000000">Dear ${name}</span>
    
    
    
