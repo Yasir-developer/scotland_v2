@@ -212,7 +212,7 @@ export default async function orderEmail(req, res) {
     await sendMail({
       to: email,
       from: "alifr849@gmail.com",
-      subject: `Verification Email for ${server}`,
+      subject: `Scotland Order Email`,
       html: emailTemplate,
     });
 
