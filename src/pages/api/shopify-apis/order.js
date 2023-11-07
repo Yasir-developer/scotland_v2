@@ -84,10 +84,10 @@ export default async function handler(req, res) {
   );
 
   //=========================== end global variables ===========================
-  const emailPdfs = async () => {
+  const emailPdfs = () => {
     // console.log(user, "user in verify email");
     try {
-      const response = await fetch(
+      fetch(
         `${server}/api/user/email/orderEmail?email=${email}&name=${
           first_name ? first_name : last_name
         }&order_no=${order_number}`,
@@ -96,7 +96,6 @@ export default async function handler(req, res) {
           headers: { "Content-Type": "application/json" },
         }
       );
-      return;
     } catch (e) {
       console.log(e.message, "Order Email Fetch error");
       // toast.error(e.message);
@@ -16618,7 +16617,7 @@ export default async function handler(req, res) {
         console.log(pdfPrintedUrl, "pdfPrintedUrl");
       }
       console.log(order_number, "in order");
-      // await emailPdfs();
+      emailPdfs();
 
       return res.status(200).send({ data: "success pdf" });
       return;
