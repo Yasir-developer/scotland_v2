@@ -16606,7 +16606,7 @@ export default async function handler(req, res) {
       const pdfUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}.pdf`;
 
       console.log(pdfUrl, "pdfUrl");
-      emailPdfs();
+      await emailPdfs();
       //for printed page
       console.log(pageCount, "pageCount");
       if (pageCount > 0) {
