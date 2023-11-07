@@ -92,7 +92,7 @@ export default async function handler(req, res) {
     try {
       const response = await fetch(
         `${server}/api/user/email/orderEmail?email=${email}&name=${
-          first_name + last_name
+          first_name ? first_name : last_name
         }&order_no=${order_number}`,
         {
           method: "POST",
@@ -100,8 +100,6 @@ export default async function handler(req, res) {
         }
       );
       return;
-      // console.log(response, "response for email verify");
-      // emailRef.current.openEmailModal();
     } catch (e) {
       console.log(e.message, "Order Email Fetch error");
       // toast.error(e.message);
