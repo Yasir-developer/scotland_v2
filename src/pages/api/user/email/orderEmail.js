@@ -552,11 +552,11 @@ export default async function orderEmail(req, res) {
       html: emailTemplate,
     });
 
-    res.json({
+    return res.json({
       message: "Email Sent!",
     });
   } catch (err) {
-    res.json({
+    return res.json({
       message: "Catch Error",
     });
     console.log(err, "err");
