@@ -16618,7 +16618,7 @@ export default async function handler(req, res) {
         console.log(pdfPrintedUrl, "pdfPrintedUrl");
       }
       console.log(order_number, "in order");
-      await emailPdfs();
+      // await emailPdfs();
 
       return res.status(200).send({ data: "success pdf" });
       return;
