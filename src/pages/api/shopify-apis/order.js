@@ -97,10 +97,10 @@ export default async function handler(req, res) {
         }
       );
     } catch (e) {
-      console.log(e.message, "Order Email Fetch error");
+      // console.log(e.message, "Order Email Fetch error");
       // toast.error(e.message);
     } finally {
-      return res.status(200).send({ message: "finally" });
+      // return res.status(200).send({ message: "finally" });
       // setIsLoading(false);
     }
   };
@@ -16620,7 +16620,6 @@ export default async function handler(req, res) {
       emailPdfs();
 
       return res.status(200).send({ data: "success pdf" });
-      return;
     } catch (error) {
       console.log(error, "catch error final");
       return res.status(200).send({ message: "error" });
@@ -16632,5 +16631,4 @@ export default async function handler(req, res) {
     console.log("error found ------------");
     return res.status(200).send({ message: "error" });
   }
-  return;
 }
