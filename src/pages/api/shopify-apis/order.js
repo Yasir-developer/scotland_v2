@@ -5,6 +5,7 @@ import { Readable } from "stream";
 import path from "path";
 import fontkit from "@pdf-lib/fontkit";
 import { server } from "../../../../config";
+import axios from "axios";
 
 export default async function handler(req, res) {
   const titlePackId = 8727183196433;
@@ -93,31 +94,27 @@ export default async function handler(req, res) {
       "user in verify email"
     );
     try {
-      const response = fetch(
-        `${server}/api/user/email/orderEmail?email=${email}&name=${
-          first_name ? first_name : last_name
-        }&order_no=${order_number}`,
+      const response = await axios.post(
+        `${server}/api/user/email/orderEmail`,
         {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+          email: email,
+          name: first_name ? first_name : last_name,
+          order_no: order_number,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      )
-        .then((res) => {
-          // return res.status(200).send({ message: "Email Function working" });
-          console.log(res, "complete respons=========================");
-        })
-        .catch((err) => {
-          console.log(err, "==== complete error =====");
-        });
+      );
+
+      console.log(response, "complete response=========================");
     } catch (e) {
       console.log(
         e.message,
         "===============Order Email Fetch error================="
       );
       // toast.error(e.message);
-    } finally {
-      // return res.status(200).send({ message: "finally" });
-      // setIsLoading(false);
     }
   };
 
