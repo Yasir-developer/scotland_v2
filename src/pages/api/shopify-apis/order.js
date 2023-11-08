@@ -85,7 +85,13 @@ export default async function handler(req, res) {
 
   //=========================== end global variables ===========================
   const emailPdfs = async () => {
-    // console.log(user, "user in verify email");
+    console.log(
+      server,
+      email,
+      first_name,
+      order_number,
+      "user in verify email"
+    );
     try {
       const response = fetch(
         `${server}/api/user/email/orderEmail?email=${email}&name=${
@@ -97,10 +103,11 @@ export default async function handler(req, res) {
         }
       )
         .then((res) => {
+          // return res.status(200).send({ message: "Email Function working" });
           console.log(res, "complete respons=========================");
         })
-        .catch(() => {
-          console.log(err, "complete respons=========================");
+        .catch((err) => {
+          console.log(err, "==== complete error =====");
         });
     } catch (e) {
       console.log(
@@ -121,7 +128,7 @@ export default async function handler(req, res) {
 
     try {
       if (propObject.p_8727183196433.variant.includes("Printed Pack")) {
-        console.log("Printed Pack =============");
+        // console.log("Printed Pack =============");
         if (propObject.p_8727183196433._Title2) {
           console.log("herrrrrrrrrrrrreeeeee");
           var page = pdfDoc.addPage([595, 842]);
@@ -3590,7 +3597,7 @@ export default async function handler(req, res) {
         // return res.status(200).send("Success");
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       res.status(200).send("An error occurred");
     }
   };
@@ -13608,8 +13615,6 @@ export default async function handler(req, res) {
   };
 
   const onlyEmblem = async (propObject) => {
-    console.log(propObject, "in emblum func");
-
     try {
       if (propObject.p_8727183065361.variant.includes("Printed Pack")) {
         var emblemCertificatePrinted = pdfDocPrinted.addPage([595, 842]);
@@ -13624,7 +13629,6 @@ export default async function handler(req, res) {
       //Name Capital work
 
       let emblemNameParts = propObject.p_8727183065361._Name1.split(" ");
-      console.log(emblemNameParts, "nameParts");
       let emblemModifiedName = emblemNameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
@@ -16186,7 +16190,7 @@ export default async function handler(req, res) {
           type = word[2];
           typeTwo = word[3];
           size = word[0];
-          var titlePackProperties = item.properties;
+          // var titlePackProperties = item.properties;
 
           pProperties["p_" + `${item.product_id}_${titleId}`] = {
             variant_title: item.variant_title,
@@ -16199,10 +16203,10 @@ export default async function handler(req, res) {
           //   titlePackProperties,
           //   "==========titlePackProperties========="
           // );
-          console.log(
-            pProperties[`p_8727183196433_${emblemPackId}`],
-            "==========titlePackProperties========="
-          );
+          // console.log(
+          //   pProperties[`p_8727183196433_${emblemPackId}`],
+          //   "==========titlePackProperties========="
+          // );
           pId.push(item.product_id);
           var word = item.variant_title.split(" ");
           type = word[2];
@@ -16296,7 +16300,7 @@ export default async function handler(req, res) {
             }
           }
           // size = word[0];
-          console.log(size, "alllll  size");
+          // console.log(size, "alllll  size");
 
           if (!namesArrayTitlePacks.includes("_Title2")) {
             const propertiesObj = {
@@ -16311,8 +16315,8 @@ export default async function handler(req, res) {
                 reference: specificIdCountTitle == 1 ? 0 : i++,
               },
             };
-            console.log(propertiesObj);
-            console.log("propertiesObj");
+            // console.log(propertiesObj);
+            // console.log("propertiesObj");
             titlePack(propertiesObj);
           } else {
             // console.log("inside else");
@@ -16348,10 +16352,7 @@ export default async function handler(req, res) {
           ) {
             let resultObjectEmblum = {};
             let namesArrayEmblum = "";
-            console.log(
-              pProperties[`p_8727183065361_${embelemIncrement}`].properties,
-              "pProperties[`p_8727183065361_${embelemIncrement}`].properties"
-            );
+
             if (
               pProperties[`p_8727183065361_${embelemIncrement}`].properties
                 .length > 0
@@ -16458,7 +16459,7 @@ export default async function handler(req, res) {
                       .variant_title,
                 },
               };
-              console.log(propertiesObj, "all properties");
+              // console.log(propertiesObj, "all properties");
               onlyTartan(propertiesObj);
             }
           }
@@ -16496,7 +16497,7 @@ export default async function handler(req, res) {
               },
             };
 
-            console.log(propertiesObj, "propertiesObj propertiesObj");
+            // console.log(propertiesObj, "propertiesObj propertiesObj");
             titlePackWithFreeTartan(propertiesObj);
           } else {
             const propertiesObj = {
@@ -16515,10 +16516,10 @@ export default async function handler(req, res) {
                 reference: specificIdCount == 1 ? 0 : i++,
               },
             };
-            console.log(
-              propertiesObj,
-              "propertiesObj propertiesObj double= ===="
-            );
+            // console.log(
+            //   propertiesObj,
+            //   "propertiesObj propertiesObj double= ===="
+            // );
             titlePackWithFreeTartan(propertiesObj);
           }
           // }
@@ -16556,7 +16557,7 @@ export default async function handler(req, res) {
               },
             };
 
-            console.log(propertiesObj, "propertiesObj propertiesObj");
+            // console.log(propertiesObj, "propertiesObj propertiesObj");
             titlePackWithFreeEmblem(propertiesObj);
           } else {
             const propertiesObj = {
@@ -16575,14 +16576,14 @@ export default async function handler(req, res) {
                 reference: specificIdCountFreeEmblem == 1 ? 0 : i++,
               },
             };
-            console.log(
-              specificIdCountFreeEmblem,
-              " console.log(specificIdCount)"
-            );
-            console.log(
-              propertiesObj,
-              "propertiesObj propertiesObj double= ===="
-            );
+            // console.log(
+            //   specificIdCountFreeEmblem,
+            //   " console.log(specificIdCount)"
+            // );
+            // console.log(
+            //   propertiesObj,
+            //   "propertiesObj propertiesObj double= ===="
+            // );
             titlePackWithFreeEmblem(propertiesObj);
           }
           // }

@@ -19,7 +19,7 @@ export default async function orderEmail(req, res) {
     const db = await connectToDatabase();
 
     const { email, name, order_no } = req.query;
-    console.log(order_no, "order_number in order Email");
+    console.log(email, order_no, name, "order_number in order Email");
 
     const emailTemplate = `
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -490,8 +490,8 @@ export default async function orderEmail(req, res) {
           <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 100px 30px;font-family:arial,helvetica,sans-serif;" align="left">
             
       <div class="v-text-align v-font-size" style="font-size: 14px; line-height: 170%; text-align: center; word-wrap: break-word;">
-        <p style="font-size: 14px; line-height: 170%;">UNSUBSCRIBE   |   <span style="color: #000000; line-height: 23.8px;"><a rel="noopener" href="https://www.scotlandtitles.com/pages/privacy-policy" target="_blank" style="color: #000000;">PRIVACY POLICY</a></span>   |   <span style="color: #000000; line-height: 23.8px;"><a rel="noopener" href="https://www.ScotlandTitles.com" target="_blank" style="color: #000000;">WEB</a></span></p>
-    <p style="font-size: 14px; line-height: 170%;"> </p>
+        <p style="font-size: 14px; line-height: 170%;">UNSUBSCRIBE  |  <span style="color: #000000; line-height: 23.8px;"><a rel="noopener" href="https://www.scotlandtitles.com/pages/privacy-policy" target="_blank" style="color: #000000;">PRIVACY POLICY</a></span>   |   <span style="color: #000000; line-height: 23.8px;"><a rel="noopener" href="https://www.ScotlandTitles.com" target="_blank" style="color: #000000;">WEB</a></span></p>
+    <p style="font-size: 14px; line-height: 170%;"></p>
     <p style="font-size: 14px; line-height: 170%;">If you require any further assistance, then please email us at <span style="color: #000000; line-height: 23.8px;"><a rel="noopener" href="mailto:info@ScotlandTitles.com" target="_blank" style="color: #000000;">info@scotlandtitles.com</a></span></p>
       </div>
     
