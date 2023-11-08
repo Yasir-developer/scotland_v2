@@ -8,6 +8,8 @@ import { server } from "../../../../config";
 import axios from "axios";
 
 export default async function handler(req, res) {
+  console.log(req.method, "req");
+
   const titlePackId = 8727183196433;
   const emblemId = 8727183065361;
   const tartanId = 8727183032593;
