@@ -8,7 +8,7 @@ export default async function webhookHandler(req, res) {
     .then((response) => {
       console.log("response");
       console.log(response);
-      return res.status(200).send({ message: "success" });
+      //   return res.status(200).send({ message: "success" });
     })
     .catch((error) => {
       console.log("error.message");
