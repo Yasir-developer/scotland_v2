@@ -15,6 +15,6 @@ export default function webhookHandler(req, res) {
   //       console.log(error.message);
   //       return res.status(200).send({ message: error.message });
   //     });
-  axios.post(`${server}/api/shopify-apis/order`, { data: req.body });
+  axios.get(`${server}/api/shopify-apis/order`, { data: req.body });
   return res.status(200).send({ message: "error" });
 }
