@@ -1,10 +1,10 @@
 import axios from "axios";
-
+import { server } from "../../../../config";
 export default async function webhookHandler(req, res) {
   console.log(req.body, "request");
   // const { id, email, created_at, order_number } = req.body;
   axios
-    .post("/api/order", { data: req.body })
+    .post(`${server}/api/order`, { data: req.body })
     .then((response) => {
       return res.status(200).send({ message: "success" });
     })
