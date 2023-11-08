@@ -18,7 +18,7 @@ export default async function orderEmail(req, res) {
     // console.log(req, "reqqqqqq");
     const db = await connectToDatabase();
 
-    const { email, name, order_no } = req.query;
+    const { email, name, order_no } = req.body;
     console.log(email, order_no, name, "order_number in order Email");
 
     const emailTemplate = `
