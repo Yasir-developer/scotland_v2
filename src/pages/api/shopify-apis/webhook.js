@@ -3,7 +3,7 @@ import { server } from "../../../../config";
 export default async function webhookHandler(req, res) {
   //   console.log(req.body, "request");
   // const { id, email, created_at, order_number } = req.body;
-  axios
+  await axios
     .get(`${server}/api/shopify-apis/order`, { data: req.body })
     .then((response) => {
       console.log("response");
