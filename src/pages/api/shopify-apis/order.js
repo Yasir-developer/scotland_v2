@@ -15592,462 +15592,456 @@ export default async function handler(req, res) {
   if (email && req.body.line_items.length > 0) {
     // console.log(req.body.customer.last_name, "Order Complete Request");
     try {
-      if (req.method === "POST") {
-        let pId = [];
-        let pProperties = {};
-        let i = 1;
-        var k = 1;
-        var titleId = 1;
-        var emblemPackId = 1;
-        var tartanPackId = 1;
-        var freeTartanPackId = 1;
-        var freeEmblemPackId = 1;
-        var discountedEmblemPackId = 1;
+      let pId = [];
+      let pProperties = {};
+      let i = 1;
+      var k = 1;
+      var titleId = 1;
+      var emblemPackId = 1;
+      var tartanPackId = 1;
+      var freeTartanPackId = 1;
+      var freeEmblemPackId = 1;
+      var discountedEmblemPackId = 1;
 
-        req.body.line_items.map((item, index) => {
-          // console.log(item, "itemitem");
-          if (item.product_id == titlePackId) {
-            pId.push(item.product_id);
-            var word = item.variant_title.split(" ");
-            type = word[2];
-            typeTwo = word[3];
-            size = word[0];
-            // var titlePackProperties = item.properties;
+      req.body.line_items.map((item, index) => {
+        // console.log(item, "itemitem");
+        if (item.product_id == titlePackId) {
+          pId.push(item.product_id);
+          var word = item.variant_title.split(" ");
+          type = word[2];
+          typeTwo = word[3];
+          size = word[0];
+          // var titlePackProperties = item.properties;
 
-            pProperties["p_" + `${item.product_id}_${titleId}`] = {
-              variant_title: item.variant_title,
-              properties: item.properties,
-              quantity: item.quantity,
-            };
-            titleId++;
-          } else if (item.product_id == emblemId) {
-            pId.push(item.product_id);
-            var word = item.variant_title.split(" ");
-            type = word[2];
-            typeTwo = word[3];
-            size = word[0];
+          pProperties["p_" + `${item.product_id}_${titleId}`] = {
+            variant_title: item.variant_title,
+            properties: item.properties,
+            quantity: item.quantity,
+          };
+          titleId++;
+        } else if (item.product_id == emblemId) {
+          pId.push(item.product_id);
+          var word = item.variant_title.split(" ");
+          type = word[2];
+          typeTwo = word[3];
+          size = word[0];
 
-            pProperties["p_" + `${item.product_id}_${emblemPackId}`] = {
-              variant_title: item.variant_title,
-              properties:
-                item.properties.length > 0
-                  ? item.properties
-                  : pProperties[`p_8727183196433_${emblemPackId}`],
-              quantity: item.quantity,
-            };
-            emblemPackId++;
-          } else if (item.product_id == tartanId) {
-            console.log(tartanPackId, "tartanPackId");
-            pId.push(item.product_id);
-            var word = item.variant_title.split(" ");
-            type = word[2];
+          pProperties["p_" + `${item.product_id}_${emblemPackId}`] = {
+            variant_title: item.variant_title,
+            properties:
+              item.properties.length > 0
+                ? item.properties
+                : pProperties[`p_8727183196433_${emblemPackId}`],
+            quantity: item.quantity,
+          };
+          emblemPackId++;
+        } else if (item.product_id == tartanId) {
+          console.log(tartanPackId, "tartanPackId");
+          pId.push(item.product_id);
+          var word = item.variant_title.split(" ");
+          type = word[2];
 
-            pProperties["p_" + `${item.product_id}_${tartanPackId}`] = {
-              variant_title: item.variant_title,
-              properties: item.properties,
-              quantity: item.quantity,
-            };
-            tartanPackId++;
-          } else if (item.product_id == freeTartanId) {
-            console.log("free tartan id heree");
-            pId.push(item.product_id);
-            var word = item.variant_title.split(" ");
-            type = word[2];
-            typeTwo = word[3];
-            size = word[0];
-            pProperties["p_" + `${item.product_id}_${freeTartanPackId}`] = {
-              variant_title: item.variant_title,
-              properties: item.properties,
-            };
+          pProperties["p_" + `${item.product_id}_${tartanPackId}`] = {
+            variant_title: item.variant_title,
+            properties: item.properties,
+            quantity: item.quantity,
+          };
+          tartanPackId++;
+        } else if (item.product_id == freeTartanId) {
+          console.log("free tartan id heree");
+          pId.push(item.product_id);
+          var word = item.variant_title.split(" ");
+          type = word[2];
+          typeTwo = word[3];
+          size = word[0];
+          pProperties["p_" + `${item.product_id}_${freeTartanPackId}`] = {
+            variant_title: item.variant_title,
+            properties: item.properties,
+          };
 
-            freeTartanPackId++;
-          } else if (item.product_id == freeEmblemId) {
-            pId.push(item.product_id);
-            var word = item.variant_title.split(" ");
-            type = word[2];
-            typeTwo = word[3];
-            size = word[0];
-            pProperties["p_" + `${item.product_id}_${freeEmblemPackId}`] = {
-              variant_title: item.variant_title,
-              properties: item.properties,
-            };
+          freeTartanPackId++;
+        } else if (item.product_id == freeEmblemId) {
+          pId.push(item.product_id);
+          var word = item.variant_title.split(" ");
+          type = word[2];
+          typeTwo = word[3];
+          size = word[0];
+          pProperties["p_" + `${item.product_id}_${freeEmblemPackId}`] = {
+            variant_title: item.variant_title,
+            properties: item.properties,
+          };
 
-            freeEmblemPackId++;
+          freeEmblemPackId++;
+        }
+      });
+      let ko = Object.keys(pProperties);
+      ko.map((a) => console.log(pProperties[a]));
+      const specificId = freeTartanId;
+      const specificIdTitlePack = titlePackId;
+      const specificIdfreeEmblemPack = freeEmblemId;
+      const specificIdCountTitle = pId.filter(
+        (id) => id === specificIdTitlePack
+      ).length;
+
+      const specificIdCountFreeEmblem = pId.filter(
+        (id) => id === specificIdfreeEmblemPack
+      ).length;
+
+      const specificIdCount = pId.filter((id) => id === specificId).length;
+
+      var titleIncrement = 1;
+      var embelemIncrement = 1;
+      var tartanIncrement = 1;
+      var freeTartanIncrement = 1;
+      var freeEmblemIncrement = 1;
+
+      for (const productId of pId) {
+        if (productId == titlePackId) {
+          // let j;
+
+          let resultObjectTitlePack = {};
+          let namesArrayTitlePacks = "";
+
+          if (pProperties[`p_8727183196433_${titleIncrement}`].properties) {
+            namesArrayTitlePacks = pProperties[
+              `p_8727183196433_${titleIncrement}`
+            ].properties.map((propItem, index) => propItem.name);
+            for (const obj of pProperties[`p_8727183196433_${titleIncrement}`]
+              .properties) {
+              // console.log(obj, "objobj");
+              resultObjectTitlePack[obj.name] = obj.value;
+            }
           }
-        });
-        let ko = Object.keys(pProperties);
-        ko.map((a) => console.log(pProperties[a]));
-        const specificId = freeTartanId;
-        const specificIdTitlePack = titlePackId;
-        const specificIdfreeEmblemPack = freeEmblemId;
-        const specificIdCountTitle = pId.filter(
-          (id) => id === specificIdTitlePack
-        ).length;
+          // size = word[0];
+          // console.log(size, "alllll  size");
 
-        const specificIdCountFreeEmblem = pId.filter(
-          (id) => id === specificIdfreeEmblemPack
-        ).length;
+          if (!namesArrayTitlePacks.includes("_Title2")) {
+            const propertiesObj = {
+              p_8727183196433: {
+                _Title1: resultObjectTitlePack._Title1,
+                _Name1: resultObjectTitlePack._Name1,
+                _Date: resultObjectTitlePack._Date,
+                variant:
+                  pProperties[`p_8727183196433_${titleIncrement}`]
+                    .variant_title,
+                size: size,
+                reference: specificIdCountTitle == 1 ? 0 : i++,
+              },
+            };
+            // console.log(propertiesObj);
+            // console.log("propertiesObj");
+            titlePack(propertiesObj);
+          } else {
+            // console.log("inside else");
 
-        const specificIdCount = pId.filter((id) => id === specificId).length;
+            const propertiesObj = {
+              p_8727183196433: {
+                _Title1: resultObjectTitlePack._Title1,
+                _Name1: resultObjectTitlePack._Name1,
+                _Title2: resultObjectTitlePack._Title2,
+                _Name2: resultObjectTitlePack._Name2,
+                variant:
+                  pProperties[`p_8727183196433_${titleIncrement}`]
+                    .variant_title,
 
-        var titleIncrement = 1;
-        var embelemIncrement = 1;
-        var tartanIncrement = 1;
-        var freeTartanIncrement = 1;
-        var freeEmblemIncrement = 1;
+                _Date: resultObjectTitlePack._Date,
 
-        for (const productId of pId) {
-          if (productId == titlePackId) {
-            // let j;
+                size: size,
+                reference: specificIdCountTitle == 1 ? 0 : i++,
 
-            let resultObjectTitlePack = {};
-            let namesArrayTitlePacks = "";
+                // reference: i++,
+              },
+            };
 
-            if (pProperties[`p_8727183196433_${titleIncrement}`].properties) {
-              namesArrayTitlePacks = pProperties[
-                `p_8727183196433_${titleIncrement}`
-              ].properties.map((propItem, index) => propItem.name);
-              for (const obj of pProperties[`p_8727183196433_${titleIncrement}`]
-                .properties) {
-                // console.log(obj, "objobj");
-                resultObjectTitlePack[obj.name] = obj.value;
-              }
-            }
-            // size = word[0];
-            // console.log(size, "alllll  size");
+            titlePack(propertiesObj);
+          }
+          titleIncrement++;
+          // }
+        } else if (productId == emblemId) {
+          for (
+            let i = 0;
+            i < pProperties[`p_8727183065361_${embelemIncrement}`].quantity;
+            i++
+          ) {
+            let resultObjectEmblum = {};
+            let namesArrayEmblum = "";
 
-            if (!namesArrayTitlePacks.includes("_Title2")) {
-              const propertiesObj = {
-                p_8727183196433: {
-                  _Title1: resultObjectTitlePack._Title1,
-                  _Name1: resultObjectTitlePack._Name1,
-                  _Date: resultObjectTitlePack._Date,
-                  variant:
-                    pProperties[`p_8727183196433_${titleIncrement}`]
-                      .variant_title,
-                  size: size,
-                  reference: specificIdCountTitle == 1 ? 0 : i++,
-                },
-              };
-              // console.log(propertiesObj);
-              // console.log("propertiesObj");
-              titlePack(propertiesObj);
-            } else {
-              // console.log("inside else");
-
-              const propertiesObj = {
-                p_8727183196433: {
-                  _Title1: resultObjectTitlePack._Title1,
-                  _Name1: resultObjectTitlePack._Name1,
-                  _Title2: resultObjectTitlePack._Title2,
-                  _Name2: resultObjectTitlePack._Name2,
-                  variant:
-                    pProperties[`p_8727183196433_${titleIncrement}`]
-                      .variant_title,
-
-                  _Date: resultObjectTitlePack._Date,
-
-                  size: size,
-                  reference: specificIdCountTitle == 1 ? 0 : i++,
-
-                  // reference: i++,
-                },
-              };
-
-              titlePack(propertiesObj);
-            }
-            titleIncrement++;
-            // }
-          } else if (productId == emblemId) {
-            for (
-              let i = 0;
-              i < pProperties[`p_8727183065361_${embelemIncrement}`].quantity;
-              i++
+            if (
+              pProperties[`p_8727183065361_${embelemIncrement}`].properties
+                .length > 0
             ) {
-              let resultObjectEmblum = {};
-              let namesArrayEmblum = "";
-
               if (
                 pProperties[`p_8727183065361_${embelemIncrement}`].properties
-                  .length > 0
               ) {
-                if (
-                  pProperties[`p_8727183065361_${embelemIncrement}`].properties
-                ) {
-                  namesArrayEmblum = pProperties[
-                    `p_8727183065361_${embelemIncrement}`
-                  ].properties.map((propItem, index) => propItem.name);
-                  for (const obj of pProperties[
-                    `p_8727183065361_${embelemIncrement}`
-                  ].properties) {
-                    resultObjectEmblum[obj.name] = obj.value;
-                  }
-                }
-              } else {
                 namesArrayEmblum = pProperties[
-                  `p_8727183196433_${embelemIncrement}`
+                  `p_8727183065361_${embelemIncrement}`
                 ].properties.map((propItem, index) => propItem.name);
                 for (const obj of pProperties[
-                  `p_8727183196433_${embelemIncrement}`
+                  `p_8727183065361_${embelemIncrement}`
                 ].properties) {
                   resultObjectEmblum[obj.name] = obj.value;
                 }
               }
-
-              if (!namesArrayEmblum.includes("_Title2")) {
-                console.log("in name array emblum");
-                const propertiesObj = {
-                  p_8727183065361: {
-                    _Title1: resultObjectEmblum._Title1,
-                    _Name1: resultObjectEmblum._Name1,
-                    _Date: resultObjectEmblum._Date,
-                    variant:
-                      pProperties[`p_8727183065361_${embelemIncrement}`]
-                        .variant_title,
-                  },
-                };
-                onlyEmblem(propertiesObj);
-              } else {
-                const propertiesObj = {
-                  p_8727183065361: {
-                    _Title1: resultObjectEmblum._Title1,
-                    _Name1: resultObjectEmblum._Name1,
-                    _Title2: resultObjectEmblum._Title2,
-                    _Name2: resultObjectEmblum._name2
-                      ? resultObjectEmblum._name2
-                      : resultObjectEmblum._Name2,
-                    _Date: resultObjectEmblum._Date,
-                    variant:
-                      pProperties[`p_8727183065361_${embelemIncrement}`]
-                        .variant_title,
-                  },
-                };
-                onlyEmblem(propertiesObj);
-              }
-            }
-            embelemIncrement++;
-          } else if (productId == tartanId) {
-            for (
-              let i = 0;
-              i < pProperties[`p_8727183032593_${tartanIncrement}`].quantity;
-              i++
-            ) {
-              let resultObjectTatran = {};
-              let namesArrayTatran = "";
-
-              if (
-                pProperties[`p_8727183032593_${tartanIncrement}`].properties
-              ) {
-                namesArrayTatran = pProperties[
-                  `p_8727183032593_${tartanIncrement}`
-                ].properties.map((propItem, index) => propItem.name);
-                for (const obj of pProperties[
-                  `p_8727183032593_${tartanIncrement}`
-                ].properties) {
-                  resultObjectTatran[obj.name] = obj.value;
-                }
-              }
-
-              if (
-                !namesArrayTatran.includes("_Title2") // resultObjectTitlePack._Title1 == "Lord" &&
-              ) {
-                const propertiesObj = {
-                  p_8727183032593: {
-                    _Title1: resultObjectTatran._Title1,
-                    _Name1: resultObjectTatran._name1,
-                    _Date: resultObjectTatran._Date,
-                    variant:
-                      pProperties[`p_8727183032593_${tartanIncrement}`]
-                        .variant_title,
-                  },
-                };
-                onlyTartan(propertiesObj);
-              } else {
-                const propertiesObj = {
-                  p_8727183032593: {
-                    _Title1: resultObjectTatran._Title1,
-                    _Name1: resultObjectTatran._name1,
-                    _Title2: resultObjectTatran._Title2,
-                    _Name2: resultObjectTatran._name2,
-                    _Date: resultObjectTatran._Date,
-                    variant:
-                      pProperties[`p_8727183032593_${tartanIncrement}`]
-                        .variant_title,
-                  },
-                };
-                // console.log(propertiesObj, "all properties");
-                onlyTartan(propertiesObj);
-              }
-            }
-            tartanIncrement++;
-          } else if (productId == freeTartanId) {
-            // for (let j = 0; j < item.quantity; j++) {
-            let resultObjectTitleFreePack = {};
-            let namesArrayTitleFreePacks = "";
-
-            if (
-              pProperties[`p_8727182704913_${freeTartanIncrement}`].properties
-            ) {
-              namesArrayTitleFreePacks = pProperties[
-                `p_8727182704913_${freeTartanIncrement}`
+            } else {
+              namesArrayEmblum = pProperties[
+                `p_8727183196433_${embelemIncrement}`
               ].properties.map((propItem, index) => propItem.name);
               for (const obj of pProperties[
-                `p_8727182704913_${freeTartanIncrement}`
+                `p_8727183196433_${embelemIncrement}`
               ].properties) {
-                // console.log(obj, "objobj");
-                resultObjectTitleFreePack[obj.name] = obj.value;
+                resultObjectEmblum[obj.name] = obj.value;
               }
             }
 
-            if (!namesArrayTitleFreePacks.includes("_Title2")) {
+            if (!namesArrayEmblum.includes("_Title2")) {
+              console.log("in name array emblum");
               const propertiesObj = {
-                p_8727182704913: {
-                  _Title1: resultObjectTitleFreePack._Title1,
-                  _Name1: resultObjectTitleFreePack._Name1,
-                  _Date: resultObjectTitleFreePack._Date,
+                p_8727183065361: {
+                  _Title1: resultObjectEmblum._Title1,
+                  _Name1: resultObjectEmblum._Name1,
+                  _Date: resultObjectEmblum._Date,
                   variant:
-                    pProperties[`p_8727182704913_${freeTartanIncrement}`]
+                    pProperties[`p_8727183065361_${embelemIncrement}`]
                       .variant_title,
-                  size: size,
-                  reference: specificIdCount == 1 ? 0 : i++,
                 },
               };
-
-              // console.log(propertiesObj, "propertiesObj propertiesObj");
-              titlePackWithFreeTartan(propertiesObj);
+              onlyEmblem(propertiesObj);
             } else {
               const propertiesObj = {
-                p_8727182704913: {
-                  _Title1: resultObjectTitleFreePack._Title1,
-                  _Name1: resultObjectTitleFreePack._Name1,
-                  _Title2: resultObjectTitleFreePack._Title2,
-                  _Name2: resultObjectTitleFreePack._Name2,
+                p_8727183065361: {
+                  _Title1: resultObjectEmblum._Title1,
+                  _Name1: resultObjectEmblum._Name1,
+                  _Title2: resultObjectEmblum._Title2,
+                  _Name2: resultObjectEmblum._name2
+                    ? resultObjectEmblum._name2
+                    : resultObjectEmblum._Name2,
+                  _Date: resultObjectEmblum._Date,
                   variant:
-                    pProperties[`p_8727182704913_${freeTartanIncrement}`]
+                    pProperties[`p_8727183065361_${embelemIncrement}`]
                       .variant_title,
-
-                  _Date: resultObjectTitleFreePack._Date,
-
-                  size: size,
-                  reference: specificIdCount == 1 ? 0 : i++,
                 },
               };
-              // console.log(
-              //   propertiesObj,
-              //   "propertiesObj propertiesObj double= ===="
-              // );
-              titlePackWithFreeTartan(propertiesObj);
+              onlyEmblem(propertiesObj);
             }
-            // }
-            freeTartanIncrement++;
-          } else if (productId == freeEmblemId) {
-            // for (let j = 0; j < item.quantity; j++) {
-            let resultObjectTitleFreeEmblemPack = {};
-            let namesArrayTitleFreeEmblemPacks = "";
-
-            if (
-              pProperties[`p_8950348644625_${freeEmblemIncrement}`].properties
-            ) {
-              namesArrayTitleFreeEmblemPacks = pProperties[
-                `p_8950348644625_${freeEmblemIncrement}`
-              ].properties.map((propItem, index) => propItem.name);
-              for (const obj of pProperties[
-                `p_8950348644625_${freeEmblemIncrement}`
-              ].properties) {
-                // console.log(obj, "objobj");
-                resultObjectTitleFreeEmblemPack[obj.name] = obj.value;
-              }
-            }
-
-            if (!namesArrayTitleFreeEmblemPacks.includes("_Title2")) {
-              const propertiesObj = {
-                p_8950348644625: {
-                  _Title1: resultObjectTitleFreeEmblemPack._Title1,
-                  _Name1: resultObjectTitleFreeEmblemPack._Name1,
-                  _Date: resultObjectTitleFreeEmblemPack._Date,
-                  variant:
-                    pProperties[`p_8950348644625_${freeEmblemIncrement}`]
-                      .variant_title,
-                  size: size,
-                  reference: specificIdCountFreeEmblem == 1 ? 0 : i++,
-                },
-              };
-
-              // console.log(propertiesObj, "propertiesObj propertiesObj");
-              titlePackWithFreeEmblem(propertiesObj);
-            } else {
-              const propertiesObj = {
-                p_8950348644625: {
-                  _Title1: resultObjectTitleFreeEmblemPack._Title1,
-                  _Name1: resultObjectTitleFreeEmblemPack._Name1,
-                  _Title2: resultObjectTitleFreeEmblemPack._Title2,
-                  _Name2: resultObjectTitleFreeEmblemPack._Name2,
-                  variant:
-                    pProperties[`p_8950348644625_${freeEmblemIncrement}`]
-                      .variant_title,
-
-                  _Date: resultObjectTitleFreeEmblemPack._Date,
-
-                  size: size,
-                  reference: specificIdCountFreeEmblem == 1 ? 0 : i++,
-                },
-              };
-              // console.log(
-              //   specificIdCountFreeEmblem,
-              //   " console.log(specificIdCount)"
-              // );
-              // console.log(
-              //   propertiesObj,
-              //   "propertiesObj propertiesObj double= ===="
-              // );
-              titlePackWithFreeEmblem(propertiesObj);
-            }
-            // }
-            freeEmblemIncrement++;
           }
+          embelemIncrement++;
+        } else if (productId == tartanId) {
+          for (
+            let i = 0;
+            i < pProperties[`p_8727183032593_${tartanIncrement}`].quantity;
+            i++
+          ) {
+            let resultObjectTatran = {};
+            let namesArrayTatran = "";
+
+            if (pProperties[`p_8727183032593_${tartanIncrement}`].properties) {
+              namesArrayTatran = pProperties[
+                `p_8727183032593_${tartanIncrement}`
+              ].properties.map((propItem, index) => propItem.name);
+              for (const obj of pProperties[
+                `p_8727183032593_${tartanIncrement}`
+              ].properties) {
+                resultObjectTatran[obj.name] = obj.value;
+              }
+            }
+
+            if (
+              !namesArrayTatran.includes("_Title2") // resultObjectTitlePack._Title1 == "Lord" &&
+            ) {
+              const propertiesObj = {
+                p_8727183032593: {
+                  _Title1: resultObjectTatran._Title1,
+                  _Name1: resultObjectTatran._name1,
+                  _Date: resultObjectTatran._Date,
+                  variant:
+                    pProperties[`p_8727183032593_${tartanIncrement}`]
+                      .variant_title,
+                },
+              };
+              onlyTartan(propertiesObj);
+            } else {
+              const propertiesObj = {
+                p_8727183032593: {
+                  _Title1: resultObjectTatran._Title1,
+                  _Name1: resultObjectTatran._name1,
+                  _Title2: resultObjectTatran._Title2,
+                  _Name2: resultObjectTatran._name2,
+                  _Date: resultObjectTatran._Date,
+                  variant:
+                    pProperties[`p_8727183032593_${tartanIncrement}`]
+                      .variant_title,
+                },
+              };
+              // console.log(propertiesObj, "all properties");
+              onlyTartan(propertiesObj);
+            }
+          }
+          tartanIncrement++;
+        } else if (productId == freeTartanId) {
+          // for (let j = 0; j < item.quantity; j++) {
+          let resultObjectTitleFreePack = {};
+          let namesArrayTitleFreePacks = "";
+
+          if (
+            pProperties[`p_8727182704913_${freeTartanIncrement}`].properties
+          ) {
+            namesArrayTitleFreePacks = pProperties[
+              `p_8727182704913_${freeTartanIncrement}`
+            ].properties.map((propItem, index) => propItem.name);
+            for (const obj of pProperties[
+              `p_8727182704913_${freeTartanIncrement}`
+            ].properties) {
+              // console.log(obj, "objobj");
+              resultObjectTitleFreePack[obj.name] = obj.value;
+            }
+          }
+
+          if (!namesArrayTitleFreePacks.includes("_Title2")) {
+            const propertiesObj = {
+              p_8727182704913: {
+                _Title1: resultObjectTitleFreePack._Title1,
+                _Name1: resultObjectTitleFreePack._Name1,
+                _Date: resultObjectTitleFreePack._Date,
+                variant:
+                  pProperties[`p_8727182704913_${freeTartanIncrement}`]
+                    .variant_title,
+                size: size,
+                reference: specificIdCount == 1 ? 0 : i++,
+              },
+            };
+
+            // console.log(propertiesObj, "propertiesObj propertiesObj");
+            titlePackWithFreeTartan(propertiesObj);
+          } else {
+            const propertiesObj = {
+              p_8727182704913: {
+                _Title1: resultObjectTitleFreePack._Title1,
+                _Name1: resultObjectTitleFreePack._Name1,
+                _Title2: resultObjectTitleFreePack._Title2,
+                _Name2: resultObjectTitleFreePack._Name2,
+                variant:
+                  pProperties[`p_8727182704913_${freeTartanIncrement}`]
+                    .variant_title,
+
+                _Date: resultObjectTitleFreePack._Date,
+
+                size: size,
+                reference: specificIdCount == 1 ? 0 : i++,
+              },
+            };
+            // console.log(
+            //   propertiesObj,
+            //   "propertiesObj propertiesObj double= ===="
+            // );
+            titlePackWithFreeTartan(propertiesObj);
+          }
+          // }
+          freeTartanIncrement++;
+        } else if (productId == freeEmblemId) {
+          // for (let j = 0; j < item.quantity; j++) {
+          let resultObjectTitleFreeEmblemPack = {};
+          let namesArrayTitleFreeEmblemPacks = "";
+
+          if (
+            pProperties[`p_8950348644625_${freeEmblemIncrement}`].properties
+          ) {
+            namesArrayTitleFreeEmblemPacks = pProperties[
+              `p_8950348644625_${freeEmblemIncrement}`
+            ].properties.map((propItem, index) => propItem.name);
+            for (const obj of pProperties[
+              `p_8950348644625_${freeEmblemIncrement}`
+            ].properties) {
+              // console.log(obj, "objobj");
+              resultObjectTitleFreeEmblemPack[obj.name] = obj.value;
+            }
+          }
+
+          if (!namesArrayTitleFreeEmblemPacks.includes("_Title2")) {
+            const propertiesObj = {
+              p_8950348644625: {
+                _Title1: resultObjectTitleFreeEmblemPack._Title1,
+                _Name1: resultObjectTitleFreeEmblemPack._Name1,
+                _Date: resultObjectTitleFreeEmblemPack._Date,
+                variant:
+                  pProperties[`p_8950348644625_${freeEmblemIncrement}`]
+                    .variant_title,
+                size: size,
+                reference: specificIdCountFreeEmblem == 1 ? 0 : i++,
+              },
+            };
+
+            // console.log(propertiesObj, "propertiesObj propertiesObj");
+            titlePackWithFreeEmblem(propertiesObj);
+          } else {
+            const propertiesObj = {
+              p_8950348644625: {
+                _Title1: resultObjectTitleFreeEmblemPack._Title1,
+                _Name1: resultObjectTitleFreeEmblemPack._Name1,
+                _Title2: resultObjectTitleFreeEmblemPack._Title2,
+                _Name2: resultObjectTitleFreeEmblemPack._Name2,
+                variant:
+                  pProperties[`p_8950348644625_${freeEmblemIncrement}`]
+                    .variant_title,
+
+                _Date: resultObjectTitleFreeEmblemPack._Date,
+
+                size: size,
+                reference: specificIdCountFreeEmblem == 1 ? 0 : i++,
+              },
+            };
+            // console.log(
+            //   specificIdCountFreeEmblem,
+            //   " console.log(specificIdCount)"
+            // );
+            // console.log(
+            //   propertiesObj,
+            //   "propertiesObj propertiesObj double= ===="
+            // );
+            titlePackWithFreeEmblem(propertiesObj);
+          }
+          // }
+          freeEmblemIncrement++;
         }
-        const pdfBytes = await pdfDoc.save();
-
-        const pdfStream = new Readable();
-
-        pdfStream.push(pdfBytes);
-        pdfStream.push(null); // End of stream
-
-        const remotePath = `/pdfs/${order_number}.pdf`;
-        await client.uploadFrom(pdfStream, remotePath);
-        const pageCount = pdfDocPrinted.getPageCount();
-
-        if (pageCount == 0) {
-          client.close();
-        }
-        const pdfUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}.pdf`;
-
-        console.log(pdfUrl, "pdfUrl");
-        await emailPdfs();
-        //for printed page
-        console.log(pageCount, "pageCount");
-        if (pageCount > 0) {
-          const pdfPrintedBytes = await pdfDocPrinted.save();
-
-          const pdfPrintedStream = new Readable();
-
-          pdfPrintedStream.push(pdfPrintedBytes);
-          pdfPrintedStream.push(null); // End of stream
-
-          const remotePrintedPath = `/pdfs/${order_number}-printed.pdf`;
-          await client.uploadFrom(pdfPrintedStream, remotePrintedPath);
-
-          client.close();
-
-          const pdfPrintedUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}-printed.pdf`;
-          console.log(pdfPrintedUrl, "pdfPrintedUrl");
-        }
-        console.log(order_number, "in order");
-
-        return res.status(200).send({ data: "success pdf" });
-      } else {
-        res.status(200).send("Method not allowed");
       }
+      const pdfBytes = await pdfDoc.save();
+
+      const pdfStream = new Readable();
+
+      pdfStream.push(pdfBytes);
+      pdfStream.push(null); // End of stream
+
+      const remotePath = `/pdfs/${order_number}.pdf`;
+      await client.uploadFrom(pdfStream, remotePath);
+      const pageCount = pdfDocPrinted.getPageCount();
+
+      if (pageCount == 0) {
+        client.close();
+      }
+      const pdfUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}.pdf`;
+
+      console.log(pdfUrl, "pdfUrl");
+      await emailPdfs();
+      //for printed page
+      console.log(pageCount, "pageCount");
+      if (pageCount > 0) {
+        const pdfPrintedBytes = await pdfDocPrinted.save();
+
+        const pdfPrintedStream = new Readable();
+
+        pdfPrintedStream.push(pdfPrintedBytes);
+        pdfPrintedStream.push(null); // End of stream
+
+        const remotePrintedPath = `/pdfs/${order_number}-printed.pdf`;
+        await client.uploadFrom(pdfPrintedStream, remotePrintedPath);
+
+        client.close();
+
+        const pdfPrintedUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}-printed.pdf`;
+        console.log(pdfPrintedUrl, "pdfPrintedUrl");
+      }
+      console.log(order_number, "in order");
+
+      return res.status(200).send({ data: "success pdf" });
     } catch (error) {
       console.log(error, "catch error final");
       return res.status(200).send({ message: "error" });

@@ -7,7 +7,7 @@ export default async function webhookHandler(req, res) {
     .get(`${server}/api/shopify-apis/order`, { data: req.body })
     .then((response) => {
       console.log("response");
-      console.log(response);
+      console.log(response.data, "webhook response");
       //   return res.status(200).send({ message: "success" });
     })
     .catch((error) => {
