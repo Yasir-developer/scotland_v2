@@ -110,7 +110,7 @@ export default async function handler(req, res) {
         }
       );
 
-      console.log(response, "complete response=========================");
+      console.log(response.data, "complete response=========================");
     } catch (e) {
       console.log(
         e.message,
