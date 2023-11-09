@@ -1,6 +1,6 @@
 import axios from "axios";
 import { server } from "../../../../config";
-export default function webhookHandler(req, res) {
+export default async function webhookHandler(req, res) {
   //   console.log(req.body, "request");
   // const { id, email, created_at, order_number } = req.body;
   //   await axios
@@ -15,10 +15,7 @@ export default function webhookHandler(req, res) {
   //       console.log(error.message);
   //       return res.status(200).send({ message: error.message });
   //     });
-  axios
-    .get(`${server}/api/shopify-apis/order`, { data: req.body })
-    .then((res) => {
-      console.log(res, "------------------");
-    });
+  await axios.get(`${server}/api/shopify-apis/order`, { data: req.body });
+
   return res.status(200).send({ message: "Success" });
 }
