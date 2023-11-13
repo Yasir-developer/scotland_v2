@@ -16041,28 +16041,28 @@ export default async function handler(req, res) {
         console.log(pdfPrintedUrl, "pdfPrintedUrl");
       }
 
-      await axios
-        .post(`${server}/api/test`, {
-          dentistId: order_number,
-          status: true,
-        })
-        .then((res) => {
-          // console.log(res, 'job post response..');
-          // return;
-          if (res.status == 200) {
-            console.log(
-              res?.data,
-              "res?.data?.user============================"
-            );
-          } else if (res.status == 400) {
-          }
-        })
-        .catch((error) => {
-          // toast.error(error?.response?.data?.message);
+      // await axios
+      //   .post(`${server}/api/test`, {
+      //     dentistId: order_number,
+      //     status: true,
+      //   })
+      //   .then((res) => {
+      //     // console.log(res, 'job post response..');
+      //     // return;
+      //     if (res.status == 200) {
+      //       console.log(
+      //         res?.data,
+      //         "res?.data?.user============================"
+      //       );
+      //     } else if (res.status == 400) {
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     // toast.error(error?.response?.data?.message);
 
-          // setLoader(false);
-          console.log(error, "erroorrr");
-        });
+      //     // setLoader(false);
+      //     console.log(error, "erroorrr");
+      //   });
 
       console.log(order_number, "in order");
 
