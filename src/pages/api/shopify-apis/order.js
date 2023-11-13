@@ -79,23 +79,22 @@ export default async function handler(req, res) {
     return res.status(200).send({ message: "SUCCESS ALREADY PRESENT" });
   } else {
     console.log(result, "============result=========");
-    await axios
-      .post(`${server}/api/shopify-apis/test`, {
-        orderId: req.body.id,
-        status: true,
-      })
-      .then((response) => {
-        console.log("response");
+    await axios.post(`${server}/api/shopify-apis/test`, {
+      orderId: req.body.id,
+      status: true,
+    });
+    // .then((response) => {
+    console.log("response");
 
-        console.log(response.data, "webhook response");
-        emailPdfs();
-        return res.status(200).send({ message: "Added in Database success" });
-      })
-      .catch((error) => {
-        console.log("error.message");
-        console.log(error.message);
-        return res.status(200).send({ message: error.message });
-      });
+    console.log(response.data, "webhook response");
+    await emailPdfs();
+    return res.status(200).send({ message: "Added in Database success" });
+    // })
+    // .catch((error) => {
+    //   console.log("error.message");
+    //   console.log(error.message);
+    //   return res.status(200).send({ message: error.message });
+    // });
   }
 
   // const discountedEmblemId = 8727182868753;
