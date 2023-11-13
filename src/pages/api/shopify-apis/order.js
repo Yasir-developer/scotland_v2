@@ -28,25 +28,6 @@ export default async function handler(req, res) {
       "user in verify email"
     );
 
-    // await axios
-    //   .post(
-    //     `${server}/api/user/email/orderEmail`,
-    //     {
-    //       email: email,
-    //       name: first_name ? first_name : last_name,
-    //       order_no: order_number,
-    //     },
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     console.log(res, "Email sent to the user");
-    //   })
-    //   .catch((e) => console.log("error in Email ===============", e));
-
     try {
       const response = await axios.post(
         `${server}/api/user/email/orderEmail`,
@@ -83,6 +64,7 @@ export default async function handler(req, res) {
       orderId: req.body.id,
       status: true,
     });
+    await emailPdfs();
     // .then((response) => {
     console.log("response");
 
@@ -15980,7 +15962,7 @@ export default async function handler(req, res) {
       const pdfUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}.pdf`;
       console.log(order_number, "down");
       console.log(pdfUrl, "pdfUrl");
-      await emailPdfs();
+      // await emailPdfs();
 
       // emailPdfs();
       //for printed page
