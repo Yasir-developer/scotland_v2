@@ -137,6 +137,7 @@ export default async function handler(req, res) {
         status: true,
       })
       .then((response) => {
+        emailPdfs();
         console.log("response");
         console.log(response.data, "webhook response");
 
@@ -15992,7 +15993,7 @@ export default async function handler(req, res) {
       const pdfUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}.pdf`;
 
       console.log(pdfUrl, "pdfUrl");
-      emailPdfs();
+      // await emailPdfs();
 
       //for printed page
       if (pageCount > 0) {

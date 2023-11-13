@@ -24,6 +24,7 @@ const transporter = nodemailer.createTransport({
 
 export async function sendMail({ from, to, subject, html }) {
   try {
+    console.log("====send email==== Working ====");
     await transporter.sendMail({
       from: "alifr849@gmail.com",
       to,
