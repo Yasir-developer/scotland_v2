@@ -7,6 +7,7 @@ import fontkit from "@pdf-lib/fontkit";
 import { server } from "../../../../config";
 import axios from "axios";
 import connectToDatabase from "../../../../db";
+import orderEmail from "../user/email/orderEmail";
 
 export default async function handler(req, res) {
   // console.log(req.method, "req");
@@ -35,6 +36,7 @@ export default async function handler(req, res) {
       })
       .then((response) => {
         console.log("response");
+        orderEmail();
         console.log(response.data, "webhook response");
 
         return res.status(200).send({ message: "Added in Database success" });
@@ -15981,7 +15983,7 @@ export default async function handler(req, res) {
       const pdfUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}.pdf`;
       console.log(order_number, "down");
       console.log(pdfUrl, "pdfUrl");
-      emailPdfs();
+      // emailPdfs();
       //for printed page
       if (pageCount > 0) {
         const pdfPrintedBytes = await pdfDocPrinted.save();
