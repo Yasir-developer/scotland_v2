@@ -113,7 +113,8 @@ export default async function handler(req, res) {
       )
       .then((res) => {
         console.log(res, "Email sent to the user");
-      });
+      })
+      .catch((e) => console.log("error in Email ===============", e));
 
     // console.log('Email sent to the user')
     // return res.status(200).send({ message: "Email Sent !!!" });
@@ -138,7 +139,7 @@ export default async function handler(req, res) {
       .then((response) => {
         console.log("response");
         console.log(response.data, "webhook response");
-        emailPdfs();
+        await emailPdfs();
 
         return res.status(200).send({ message: "Added in Database success" });
       })
