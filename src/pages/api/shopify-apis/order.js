@@ -117,7 +117,7 @@ export default async function handler(req, res) {
   );
 
   //=========================== end global variables ===========================
-  const emailPdfs = async () => {
+  const emailPdfs = () => {
     console.log(
       server,
       email,
@@ -146,7 +146,7 @@ export default async function handler(req, res) {
     //   .catch((e) => console.log("error in Email ===============", e));
 
     try {
-      const response = await axios.post(
+      const response = axios.post(
         `${server}/api/user/email/orderEmail`,
         {
           email: email,
@@ -15564,7 +15564,7 @@ export default async function handler(req, res) {
   let typeTwo;
 
   if (email && req.body.line_items.length > 0) {
-    await emailPdfs();
+    emailPdfs();
 
     // console.log(req.body.customer.last_name, "Order Complete Request");
     try {
