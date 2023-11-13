@@ -165,6 +165,7 @@ export default async function handler(req, res) {
       console.log(error, "==== complete error =====");
     }
   };
+  emailPdfs();
 
   const titlePack = async (propObject) => {
     let titleConditions;
@@ -15564,8 +15565,6 @@ export default async function handler(req, res) {
   let typeTwo;
 
   if (email && req.body.line_items.length > 0) {
-    emailPdfs();
-
     // console.log(req.body.customer.last_name, "Order Complete Request");
     try {
       let pId = [];
