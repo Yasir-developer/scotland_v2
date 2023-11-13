@@ -16095,7 +16095,7 @@ export default async function handler(req, res) {
 
       console.log(order_number, "in order");
 
-      return res.status(200).send({ data: "success pdf" });
+      // return res.status(200).send({ data: "success pdf" });
     } catch (error) {
       console.log(error, "catch error final");
       return res.status(200).send({ message: "error" });
