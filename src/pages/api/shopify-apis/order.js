@@ -88,7 +88,7 @@ export default async function handler(req, res) {
   );
 
   //=========================== end global variables ===========================
-  const emailPdfs = async () => {
+  const emailPdfs = () => {
     console.log(
       server,
       email,
@@ -97,7 +97,7 @@ export default async function handler(req, res) {
       "user in verify email"
     );
     try {
-      const response = await axios.post(
+      const response = axios.post(
         `${server}/api/user/email/orderEmail`,
         {
           email: email,
