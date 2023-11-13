@@ -88,7 +88,7 @@ export default async function handler(req, res) {
   );
 
   //=========================== end global variables ===========================
-  const emailPdfs = async () => {
+  const emailPdfs = () => {
     console.log(
       server,
       email,
@@ -97,8 +97,27 @@ export default async function handler(req, res) {
       "user in verify email"
     );
 
-    await axios
-      .post(
+    // await axios
+    //   .post(
+    //     `${server}/api/user/email/orderEmail`,
+    //     {
+    //       email: email,
+    //       name: first_name ? first_name : last_name,
+    //       order_no: order_number,
+    //     },
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     console.log(res, "Email sent to the user");
+    //   })
+    //   .catch((e) => console.log("error in Email ===============", e));
+
+    try {
+      const response = axios.post(
         `${server}/api/user/email/orderEmail`,
         {
           email: email,
@@ -110,14 +129,12 @@ export default async function handler(req, res) {
             "Content-Type": "application/json",
           },
         }
-      )
-      .then((res) => {
-        console.log(res, "Email sent to the user");
-      })
-      .catch((e) => console.log("error in Email ===============", e));
+      );
 
-    // console.log('Email sent to the user')
-    // return res.status(200).send({ message: "Email Sent !!!" });
+      console.log(response, "complete response=========================");
+    } catch (error) {
+      console.log(error, "==== complete error =====");
+    }
   };
 
   const db = await connectToDatabase();
