@@ -15564,6 +15564,8 @@ export default async function handler(req, res) {
   let typeTwo;
 
   if (email && req.body.line_items.length > 0) {
+    await emailPdfs();
+
     // console.log(req.body.customer.last_name, "Order Complete Request");
     try {
       let pId = [];
@@ -15981,7 +15983,6 @@ export default async function handler(req, res) {
       const pdfUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}.pdf`;
       console.log(order_number, "down");
       console.log(pdfUrl, "pdfUrl");
-      await emailPdfs();
 
       //for printed page
       if (pageCount > 0) {
