@@ -11,6 +11,8 @@ import orderEmail from "../user/email/orderEmail";
 
 export default async function handler(req, res) {
   // console.log(req.method, "req");
+  const { id, email, created_at, order_number } = req.body;
+  const { first_name, last_name } = req.body.customer;
 
   const titlePackId = 8727183196433;
   const emblemId = 8727183065361;
@@ -106,9 +108,6 @@ export default async function handler(req, res) {
     user: "yasir-ftp@scotlandtitlesapp.com",
     password: "hP2PTSSotW!I",
   });
-
-  const { id, email, created_at, order_number } = req.body;
-  const { first_name, last_name } = req.body.customer;
 
   const pdfDoc = await PDFDocument.create();
   const pdfDocPrinted = await PDFDocument.create();
