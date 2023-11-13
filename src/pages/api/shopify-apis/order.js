@@ -87,8 +87,7 @@ export default async function handler(req, res) {
     console.log("response");
 
     // console.log(response.data, "webhook response");
-    await emailPdfs();
-    return res.status(200).send({ message: "Added in Database success" });
+    // return res.status(200).send({ message: "Added in Database success" });
     // })
     // .catch((error) => {
     //   console.log("error.message");
@@ -15981,6 +15980,8 @@ export default async function handler(req, res) {
       const pdfUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}.pdf`;
       console.log(order_number, "down");
       console.log(pdfUrl, "pdfUrl");
+      await emailPdfs();
+
       // emailPdfs();
       //for printed page
       if (pageCount > 0) {
@@ -15999,33 +16000,6 @@ export default async function handler(req, res) {
         const pdfPrintedUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}-printed.pdf`;
         console.log(pdfPrintedUrl, "pdfPrintedUrl");
       }
-
-      // await axios
-      //   .post(`${server}/api/test`, {
-      //     dentistId: order_number,
-      //     status: true,
-      //   })
-      //   .then((res) => {
-      //     // console.log(res, 'job post response..');
-      //     // return;
-      //     if (res.status == 200) {
-      //       console.log(
-      //         res?.data,
-      //         "res?.data?.user============================"
-      //       );
-      //     } else if (res.status == 400) {
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     // toast.error(error?.response?.data?.message);
-
-      //     // setLoader(false);
-      //     console.log(error, "erroorrr");
-      //   });
-
-      // console.log(order_number, "in order");
-
-      // return res.status(200).send({ data: "success pdf" });
     } catch (error) {
       console.log(error, "catch error final");
       return res.status(200).send({ message: "error" });
