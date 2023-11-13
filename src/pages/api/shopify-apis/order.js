@@ -139,7 +139,7 @@ export default async function handler(req, res) {
       .then((response) => {
         console.log("response");
         console.log(response.data, "webhook response");
-        await emailPdfs();
+        emailPdfs();
 
         return res.status(200).send({ message: "Added in Database success" });
       })
