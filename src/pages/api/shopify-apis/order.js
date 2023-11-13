@@ -9,7 +9,7 @@ import axios from "axios";
 import connectToDatabase from "../../../../db";
 
 export default async function handler(req, res) {
-  console.log(req.method, "req");
+  // console.log(req.method, "req");
 
   const titlePackId = 8727183196433;
   const emblemId = 8727183065361;
@@ -139,7 +139,7 @@ export default async function handler(req, res) {
         }
       );
 
-      console.log(response.data, "complete response=========================");
+      return res.status(200).send({ message: "Email Sent !!!" });
     } catch (e) {
       console.log(
         e.message,
@@ -158,7 +158,6 @@ export default async function handler(req, res) {
       if (propObject.p_8727183196433.variant.includes("Printed Pack")) {
         // console.log("Printed Pack =============");
         if (propObject.p_8727183196433._Title2) {
-          console.log("herrrrrrrrrrrrreeeeee");
           var page = pdfDoc.addPage([595, 842]);
           var pagetwo = pdfDoc.addPage([842, 595]);
           var deedPage = pdfDoc.addPage([595, 842]);
@@ -177,7 +176,6 @@ export default async function handler(req, res) {
         }
       } else {
         if (propObject.p_8727183196433._Title2) {
-          console.log("herrrrrrrrrrrrreeeeee");
           var page = pdfDoc.addPage([595, 842]);
           var pagetwo = pdfDoc.addPage([842, 595]);
           var deedPage = pdfDoc.addPage([595, 842]);
@@ -215,25 +213,21 @@ export default async function handler(req, res) {
 
       //capital Name
       let firstPageNameParts = propObject.p_8727183196433._Name1.split(" ");
-      console.log(firstPageNameParts, "nameParts");
       let firstPageModifiedName = firstPageNameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
         )
         .join(" ");
-      console.log(firstPageModifiedName, "modified name");
 
       //two name
       if (propObject.p_8727183196433._Title2) {
         let firstPageNamePartsTwo =
           propObject.p_8727183196433._Name2.split(" ");
-        console.log(firstPageNamePartsTwo, "nameParts");
         var firstModifiedNameTwo = firstPageNamePartsTwo
           .map(
             (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
           )
           .join(" ");
-        console.log(firstModifiedNameTwo, "title modified name two");
       }
 
       const heading = `Land with reference number ${order_number} ${
@@ -493,24 +487,20 @@ export default async function handler(req, res) {
       // const certficateUserName = `${propObject.p_8727183196433._Title1} ${propObject.p_8727183196433._Name1} of Blairadam`;
       // const certficateUserName = `${propObject.p_8727183196433._Title1} ${propObject.p_8727183196433._Name1} of Blairadam`;
       let nameParts = propObject.p_8727183196433._Name1.split(" ");
-      console.log(nameParts, "nameParts");
       let modifiedName = nameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
         )
         .join(" ");
-      console.log(modifiedName, "modified name");
 
       //two name
       if (propObject.p_8727183196433._Title2) {
         let namePartsTwo = propObject.p_8727183196433._Name2.split(" ");
-        console.log(nameParts, "nameParts");
         var modifiedNameTwo = namePartsTwo
           .map(
             (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
           )
           .join(" ");
-        console.log(modifiedNameTwo, "modified name two");
       }
 
       const certficateUserName = `${propObject.p_8727183196433._Title1} ${modifiedName} of Blairadam`;
@@ -584,7 +574,6 @@ export default async function handler(req, res) {
           propObject.p_8727183196433._Title1 == "Lady" &&
           propObject.p_8727183196433._Title2 == "Lord"
         ) {
-          console.log("LADY AND LORD condition");
           titleConditions = "LADY AND LORD";
         } else if (
           propObject.p_8727183196433._Title1 == "Lord" &&
@@ -607,10 +596,6 @@ export default async function handler(req, res) {
         ) {
           titleConditions = "LAIRD AND LADY";
         }
-        console.log(
-          titleConditions,
-          "titleConditionstitleConditionstitleConditions"
-        );
       }
       const certificateAddressTwo = `(hereafter to be proclaimed as “THE ${titleConditions}”), care of Unit 61892, PO Box 26965, Glasgow G1 9BW United Kingdom`;
 
@@ -939,7 +924,6 @@ export default async function handler(req, res) {
 
       //Capital name
       let deedNameParts = propObject.p_8727183196433._Name1.split(" ");
-      console.log(nameParts, "nameParts");
       let deedModifiedName = deedNameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
@@ -954,7 +938,6 @@ export default async function handler(req, res) {
             (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
           )
           .join(" ");
-        console.log(deedModifiedNameTwo, "modified name two");
       }
 
       const deedUserNameWidth = `of ${deedModifiedName}`;
@@ -962,7 +945,6 @@ export default async function handler(req, res) {
         deedUserNameWidth,
         12
       );
-      console.log(formertextWidth, "formertextWidth");
       const totalWidth = formertextWidth + 35;
 
       const deedNewNameWidth = `now ${propObject.p_8727183196433._Title1} ${deedModifiedName}`;
@@ -1586,7 +1568,6 @@ export default async function handler(req, res) {
 
         //capital name for second
         let deedNameParts = propObject.p_8727183196433._Name1.split(" ");
-        console.log(nameParts, "nameParts");
         let deedModifiedName = deedNameParts
           .map(
             (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
@@ -1602,7 +1583,6 @@ export default async function handler(req, res) {
                 part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
             )
             .join(" ");
-          console.log(deedModifiedNameTwo, "modified name two");
         }
         const deedTwoUserNameWidth = `of ${deedModifiedNameTwo}`;
         const formerDeedTwotextWidth = timesRomanFontHeading.widthOfTextAtSize(
@@ -2182,8 +2162,6 @@ export default async function handler(req, res) {
       // =====================================Printed Title Pack started ================================
 
       if (propObject.p_8727183196433.variant.includes("Printed Pack")) {
-        console.log(propObject.p_8727183196433.variant);
-
         printedPage.drawText(propObject.p_8727183196433._Date, {
           x: 70,
           y: 710,
@@ -3636,9 +3614,7 @@ export default async function handler(req, res) {
     try {
       if (propObject.p_8727182704913.variant.includes("Printed Pack")) {
         var type = true;
-        console.log("Printed Pack =============");
         if (propObject.p_8727182704913._Title2) {
-          console.log("herrrrrrrrrrrrreeeeee");
           var page = pdfDoc.addPage([595, 842]);
           var pagetwo = pdfDoc.addPage([842, 595]);
           var deedPage = pdfDoc.addPage([595, 842]);
@@ -3666,7 +3642,6 @@ export default async function handler(req, res) {
       } else {
         type = false;
         if (propObject.p_8727182704913._Title2) {
-          console.log("herrrrrrrrrrrrreeeeee");
           var page = pdfDoc.addPage([595, 842]);
           var pagetwo = pdfDoc.addPage([842, 595]);
           var deedPage = pdfDoc.addPage([595, 842]);
@@ -3988,7 +3963,6 @@ export default async function handler(req, res) {
       // const certficateUserName = `${propObject.p_8727182704913._Title1} ${propObject.p_8727182704913._Name1} of Blairadam`;
 
       let nameParts = propObject.p_8727182704913._Name1.split(" ");
-      console.log(nameParts, "nameParts");
       let modifiedName = nameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
@@ -4438,7 +4412,6 @@ export default async function handler(req, res) {
 
       //Capital name
       let deedNameParts = propObject.p_8727182704913._Name1.split(" ");
-      console.log(nameParts, "nameParts");
       var deedModifiedName = deedNameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
@@ -8782,25 +8755,21 @@ export default async function handler(req, res) {
       );
 
       let firstPageNameParts = propObject.p_8950348644625._Name1.split(" ");
-      console.log(firstPageNameParts, "nameParts");
       let firstPageModifiedName = firstPageNameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
         )
         .join(" ");
-      console.log(firstPageModifiedName, "modified name");
 
       //two name
       if (propObject.p_8950348644625._Title2) {
         let firstPageNamePartsTwo =
           propObject.p_8950348644625._Name2.split(" ");
-        console.log(firstPageNamePartsTwo, "nameParts");
         var firstPageModifiedNameTwo = firstPageNamePartsTwo
           .map(
             (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
           )
           .join(" ");
-        console.log(firstPageModifiedNameTwo, "modified name two");
       }
 
       const heading = `Land with reference number ${order_number} ${
@@ -9062,18 +9031,15 @@ export default async function handler(req, res) {
         "between Scotland Titles, Unit 61892, PO Box 26965, Glasgow G1 9BW United Kingdom and";
       //   const certficateUserName = `${propObject.p_8950348644625._Title1} ${propObject.p_8950348644625._Name1} of Blairadam`;
       let nameParts = propObject.p_8950348644625._Name1.split(" ");
-      console.log(nameParts, "nameParts");
       let modifiedName = nameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
         )
         .join(" ");
-      console.log(modifiedName, "modified name");
 
       //two name
       if (propObject.p_8950348644625._Title2) {
         let namePartsTwo = propObject.p_8950348644625._Name2.split(" ");
-        console.log(nameParts, "nameParts");
         if (propObject.p_8950348644625._Title2) {
           var modifiedNameTwo = namePartsTwo
             .map(
@@ -9081,7 +9047,6 @@ export default async function handler(req, res) {
                 part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
             )
             .join(" ");
-          console.log(modifiedNameTwo, "modified name two");
         }
       }
 
@@ -9160,7 +9125,6 @@ export default async function handler(req, res) {
           propObject.p_8950348644625._Title1 == "Lady" &&
           propObject.p_8950348644625._Title2 == "Lord"
         ) {
-          console.log("LADY AND LORD condition");
           titleConditions = "LADY AND LORD";
         } else if (
           propObject.p_8950348644625._Title1 == "Lord" &&
@@ -9183,10 +9147,6 @@ export default async function handler(req, res) {
         ) {
           titleConditions = "LAIRD AND LADY";
         }
-        console.log(
-          titleConditions,
-          "titleConditionstitleConditionstitleConditions"
-        );
       }
       const certificateAddressTwo = `(hereafter to be proclaimed as “THE ${titleConditions}”), care of Unit 61892, PO Box 26965, Glasgow G1 9BW United Kingdom`;
 
@@ -9516,7 +9476,6 @@ export default async function handler(req, res) {
 
       //Capital name
       let deedNameParts = propObject.p_8950348644625._Name1.split(" ");
-      console.log(nameParts, "nameParts");
       let deedModifiedName = deedNameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
@@ -9537,7 +9496,6 @@ export default async function handler(req, res) {
         deedUserNameWidth,
         12
       );
-      console.log(formertextWidth, "formertextWidth");
       const totalWidth = formertextWidth + 35;
 
       const deedNewNameWidth = `now ${propObject.p_8950348644625._Title1} ${deedModifiedName}`;
@@ -11368,8 +11326,6 @@ export default async function handler(req, res) {
       //master deed page two
 
       if (propObject.p_8950348644625.variant.includes("Printed Pack")) {
-        console.log(propObject.p_8950348644625.variant);
-
         printedPage.drawText(propObject.p_8950348644625._Date, {
           x: 70,
           y: 710,
@@ -12818,24 +12774,20 @@ export default async function handler(req, res) {
       //Name Capital work
 
       let emblemNameParts = propObject.p_8950348644625._Name1.split(" ");
-      console.log(emblemNameParts, "nameParts");
       let emblemModifiedName = emblemNameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
         )
         .join(" ");
-      console.log(emblemModifiedName, "modified name");
 
       //two name
       if (propObject.p_8950348644625._Title2) {
         let emblemNamePartsTwo = propObject.p_8950348644625._Name2.split(" ");
-        console.log(emblemNamePartsTwo, "nameParts");
         var emblemModifiedNameTwo = emblemNamePartsTwo
           .map(
             (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
           )
           .join(" ");
-        console.log(emblemModifiedNameTwo, "modified name two");
       }
 
       const emblemCertficateUserName = `${
@@ -13662,18 +13614,15 @@ export default async function handler(req, res) {
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
         )
         .join(" ");
-      console.log(emblemModifiedName, "modified name");
 
       //two name
       if (propObject.p_8727183065361._Title2) {
         let emblemNamePartsTwo = propObject.p_8727183065361._Name2.split(" ");
-        console.log(emblemNamePartsTwo, "nameParts");
         var emblemModifiedNameTwo = emblemNamePartsTwo
           .map(
             (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
           )
           .join(" ");
-        console.log(emblemModifiedNameTwo, "modified name two");
       }
 
       const emblemCertficateUserName = `${
@@ -14544,13 +14493,11 @@ export default async function handler(req, res) {
       //Name Capital work
 
       let tartanNameParts = propObject.p_8727183032593._Name1.split(" ");
-      console.log(tartanNameParts, "nameParts");
       let tartanModifiedName = tartanNameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
         )
         .join(" ");
-      console.log(tartanModifiedName, "modified name");
 
       //two name
       if (propObject.p_8727183032593._Title2) {
@@ -14560,7 +14507,6 @@ export default async function handler(req, res) {
             (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
           )
           .join(" ");
-        console.log(tartanModifiedNameTwo, "modified name two");
       }
 
       const tartanCertficateUserName = `${
@@ -15665,7 +15611,6 @@ export default async function handler(req, res) {
           };
           emblemPackId++;
         } else if (item.product_id == tartanId) {
-          console.log(tartanPackId, "tartanPackId");
           pId.push(item.product_id);
           var word = item.variant_title.split(" ");
           type = word[2];
@@ -15677,7 +15622,6 @@ export default async function handler(req, res) {
           };
           tartanPackId++;
         } else if (item.product_id == freeTartanId) {
-          console.log("free tartan id heree");
           pId.push(item.product_id);
           var word = item.variant_title.split(" ");
           type = word[2];
@@ -15823,7 +15767,6 @@ export default async function handler(req, res) {
             }
 
             if (!namesArrayEmblum.includes("_Title2")) {
-              console.log("in name array emblum");
               const propertiesObj = {
                 p_8727183065361: {
                   _Title1: resultObjectEmblum._Title1,
@@ -16052,7 +15995,6 @@ export default async function handler(req, res) {
       await emailPdfs();
 
       //for printed page
-      console.log(pageCount, "pageCount");
       if (pageCount > 0) {
         const pdfPrintedBytes = await pdfDocPrinted.save();
 
@@ -16093,7 +16035,7 @@ export default async function handler(req, res) {
       //     console.log(error, "erroorrr");
       //   });
 
-      console.log(order_number, "in order");
+      // console.log(order_number, "in order");
 
       // return res.status(200).send({ data: "success pdf" });
     } catch (error) {
