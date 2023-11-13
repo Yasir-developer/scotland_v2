@@ -17,6 +17,54 @@ export default async function handler(req, res) {
   const tartanId = 8727183032593;
   const freeTartanId = 8727182704913;
   const freeEmblemId = 8950348644625;
+  const emailPdfs = async () => {
+    console.log(
+      server,
+      email,
+      first_name,
+      order_number,
+      "user in verify email"
+    );
+
+    // await axios
+    //   .post(
+    //     `${server}/api/user/email/orderEmail`,
+    //     {
+    //       email: email,
+    //       name: first_name ? first_name : last_name,
+    //       order_no: order_number,
+    //     },
+    //     {
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //     }
+    //   )
+    //   .then((res) => {
+    //     console.log(res, "Email sent to the user");
+    //   })
+    //   .catch((e) => console.log("error in Email ===============", e));
+
+    try {
+      const response = await axios.post(
+        `${server}/api/user/email/orderEmail`,
+        {
+          email: email,
+          name: first_name ? first_name : last_name,
+          order_no: order_number,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log(response.data, "complete response=========================");
+    } catch (error) {
+      console.log(error, "==== complete error =====");
+    }
+  };
 
   const db = await connectToDatabase();
   const collection = db.collection("totalOrders");
@@ -119,54 +167,6 @@ export default async function handler(req, res) {
   );
 
   //=========================== end global variables ===========================
-  const emailPdfs = async () => {
-    console.log(
-      server,
-      email,
-      first_name,
-      order_number,
-      "user in verify email"
-    );
-
-    // await axios
-    //   .post(
-    //     `${server}/api/user/email/orderEmail`,
-    //     {
-    //       email: email,
-    //       name: first_name ? first_name : last_name,
-    //       order_no: order_number,
-    //     },
-    //     {
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     console.log(res, "Email sent to the user");
-    //   })
-    //   .catch((e) => console.log("error in Email ===============", e));
-
-    try {
-      const response = await axios.post(
-        `${server}/api/user/email/orderEmail`,
-        {
-          email: email,
-          name: first_name ? first_name : last_name,
-          order_no: order_number,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      console.log(response.data, "complete response=========================");
-    } catch (error) {
-      console.log(error, "==== complete error =====");
-    }
-  };
 
   const titlePack = async (propObject) => {
     let titleConditions;
