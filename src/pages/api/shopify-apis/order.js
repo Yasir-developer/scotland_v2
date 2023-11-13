@@ -117,7 +117,7 @@ export default async function handler(req, res) {
   );
 
   //=========================== end global variables ===========================
-  const emailPdfs = () => {
+  const emailPdfs = async () => {
     console.log(
       server,
       email,
@@ -146,7 +146,7 @@ export default async function handler(req, res) {
     //   .catch((e) => console.log("error in Email ===============", e));
 
     try {
-      const response = axios.post(
+      const response = await axios.post(
         `${server}/api/user/email/orderEmail`,
         {
           email: email,
@@ -165,7 +165,6 @@ export default async function handler(req, res) {
       console.log(error, "==== complete error =====");
     }
   };
-  emailPdfs();
 
   const titlePack = async (propObject) => {
     let titleConditions;
@@ -15982,7 +15981,7 @@ export default async function handler(req, res) {
       const pdfUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}.pdf`;
       console.log(order_number, "down");
       console.log(pdfUrl, "pdfUrl");
-
+      emailPdfs();
       //for printed page
       if (pageCount > 0) {
         const pdfPrintedBytes = await pdfDocPrinted.save();
