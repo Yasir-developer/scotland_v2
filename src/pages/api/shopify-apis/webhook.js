@@ -23,7 +23,7 @@ export default async function webhookHandler(req, res) {
       })
       .then((response) => {
         console.log("response");
-        console.log(response.data, "webhook response");
+        console.log(response, "webhook response");
         return res.status(200).send({ message: "Added in Database success" });
       })
       .catch((error) => {
