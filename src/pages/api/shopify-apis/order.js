@@ -97,7 +97,7 @@ export default async function handler(req, res) {
       "user in verify email"
     );
 
-    const response = await axios
+    await axios
       .post(
         `${server}/api/user/email/orderEmail`,
         {
@@ -3685,25 +3685,21 @@ export default async function handler(req, res) {
 
       //capital Name
       let firstPageNameParts = propObject.p_8727182704913._Name1.split(" ");
-      console.log(firstPageNameParts, "nameParts");
       var firstPageModifiedName = firstPageNameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
         )
         .join(" ");
-      console.log(firstPageModifiedName, "modified name");
 
       //two name
       if (propObject.p_8727182704913._Title2) {
         let firstPageNamePartsTwo =
           propObject.p_8727182704913._Name2.split(" ");
-        console.log(firstPageNamePartsTwo, "nameParts");
         var firstModifiedNameTwo = firstPageNamePartsTwo
           .map(
             (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
           )
           .join(" ");
-        console.log(firstModifiedNameTwo, "modified name two");
       }
 
       const heading = `Land with reference number ${order_number} ${
@@ -3968,18 +3964,15 @@ export default async function handler(req, res) {
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
         )
         .join(" ");
-      console.log(modifiedName, "modified name");
 
       //two name
       if (propObject.p_8727182704913._Title2) {
         let namePartsTwo = propObject.p_8727182704913._Name2.split(" ");
-        console.log(namePartsTwo, "nameParts");
         var modifiedNameTwo = namePartsTwo
           .map(
             (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
           )
           .join(" ");
-        console.log(modifiedNameTwo, "modified name two");
       }
 
       const certficateUserName = `${propObject.p_8727182704913._Title1} ${modifiedName} of Blairadam`;
@@ -4057,7 +4050,6 @@ export default async function handler(req, res) {
           propObject.p_8727182704913._Title1 == "Lady" &&
           propObject.p_8727182704913._Title2 == "Lord"
         ) {
-          console.log("LADY AND LORD condition");
           titleConditions = "LADY AND LORD";
         } else if (
           propObject.p_8727182704913._Title1 == "Lord" &&
@@ -4080,10 +4072,6 @@ export default async function handler(req, res) {
         ) {
           titleConditions = "LAIRD AND LADY";
         }
-        console.log(
-          titleConditions,
-          "titleConditionstitleConditionstitleConditions"
-        );
       }
       const certificateAddressTwo = `(hereafter to be proclaimed as “THE ${titleConditions}”), care of Unit 61892, PO Box 26965, Glasgow G1 9BW United Kingdom`;
 
@@ -4432,7 +4420,6 @@ export default async function handler(req, res) {
         deedUserNameWidth,
         12
       );
-      console.log(formertextWidth, "formertextWidth");
       const totalWidth = formertextWidth + 35;
 
       const deedNewNameWidth = `now ${propObject.p_8727182704913._Title1} ${deedModifiedName}`;
@@ -6220,13 +6207,11 @@ export default async function handler(req, res) {
       //Name Capital work
 
       let tartanNameParts = propObject.p_8727182704913._Name1.split(" ");
-      console.log(tartanNameParts, "nameParts");
       let tartanModifiedName = tartanNameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
         )
         .join(" ");
-      console.log(tartanModifiedName, "modified name");
 
       //two name
       if (propObject.p_8727182704913._Title2) {
@@ -6236,7 +6221,6 @@ export default async function handler(req, res) {
             (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
           )
           .join(" ");
-        console.log(tartanModifiedNameTwo, "modified name two");
       }
 
       const tartanCertficateUserName = `${
@@ -6818,8 +6802,6 @@ export default async function handler(req, res) {
       //master deed page two
 
       if (propObject.p_8727182704913.variant.includes("Printed Pack")) {
-        console.log(propObject.p_8727182704913.variant);
-
         printedPage.drawText(propObject.p_8727182704913._Date, {
           x: 70,
           y: 710,
@@ -15701,8 +15683,7 @@ export default async function handler(req, res) {
                 reference: specificIdCountTitle == 1 ? 0 : i++,
               },
             };
-            // console.log(propertiesObj);
-            // console.log("propertiesObj");
+
             titlePack(propertiesObj);
           } else {
             // console.log("inside else");
@@ -15901,10 +15882,7 @@ export default async function handler(req, res) {
                 reference: specificIdCount == 1 ? 0 : i++,
               },
             };
-            // console.log(
-            //   propertiesObj,
-            //   "propertiesObj propertiesObj double= ===="
-            // );
+
             titlePackWithFreeTartan(propertiesObj);
           }
           // }
@@ -15961,14 +15939,7 @@ export default async function handler(req, res) {
                 reference: specificIdCountFreeEmblem == 1 ? 0 : i++,
               },
             };
-            // console.log(
-            //   specificIdCountFreeEmblem,
-            //   " console.log(specificIdCount)"
-            // );
-            // console.log(
-            //   propertiesObj,
-            //   "propertiesObj propertiesObj double= ===="
-            // );
+
             titlePackWithFreeEmblem(propertiesObj);
           }
           // }
@@ -15985,12 +15956,13 @@ export default async function handler(req, res) {
       const remotePath = `/pdfs/${order_number}.pdf`;
       await client.uploadFrom(pdfStream, remotePath);
       const pageCount = pdfDocPrinted.getPageCount();
+      console.log(pageCount, "pageCount");
 
       if (pageCount == 0) {
         client.close();
       }
       const pdfUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}.pdf`;
-
+      console.log(order_number, "down");
       console.log(pdfUrl, "pdfUrl");
       await emailPdfs();
 
