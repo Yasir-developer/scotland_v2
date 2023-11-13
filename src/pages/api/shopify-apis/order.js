@@ -139,7 +139,6 @@ export default async function handler(req, res) {
       .then((response) => {
         console.log("response");
         console.log(response.data, "webhook response");
-        emailPdfs();
 
         return res.status(200).send({ message: "Added in Database success" });
       })
@@ -15993,6 +15992,7 @@ export default async function handler(req, res) {
       const pdfUrl = `https://scotlandtitlesapp.com/pdfs/${order_number}.pdf`;
 
       console.log(pdfUrl, "pdfUrl");
+      emailPdfs();
 
       //for printed page
       if (pageCount > 0) {
