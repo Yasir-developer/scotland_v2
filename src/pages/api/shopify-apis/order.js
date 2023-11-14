@@ -60,7 +60,7 @@ export default async function handler(req, res) {
     return res.status(200).send({ message: "SUCCESS ALREADY PRESENT" });
   } else {
     console.log(result, "============result=========");
-    await axios.post(`${server}/api/shopify-apis/test`, {
+    await axios.post(`${server}/api/shopify-apis/insertOrder`, {
       orderId: req.body.id,
       status: true,
     });
