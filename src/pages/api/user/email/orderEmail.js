@@ -548,7 +548,7 @@ export default async function orderEmail(req, res) {
     await sendMail({
       to: email,
       from: "info@scotlandtitles.com",
-      subject: `Scotland Order Email`,
+      subject: `Scotland Titles - Download Your Digital Pack`,
       html: emailTemplate,
     });
 
