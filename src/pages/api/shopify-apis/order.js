@@ -16942,6 +16942,8 @@ export default async function handler(req, res) {
 
       // emailPdfs();
       //for printed page
+      console.log(pageCount, "pageCount in printed");
+
       if (pageCount > 0) {
         const pdfPrintedBytes = await pdfDocPrinted.save();
 
