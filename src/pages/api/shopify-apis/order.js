@@ -16945,6 +16945,7 @@ export default async function handler(req, res) {
       console.log(pageCount, "pageCount in printed");
 
       if (pageCount > 0) {
+        console.log("inside page count");
         const pdfPrintedBytes = await pdfDocPrinted.save();
 
         const pdfPrintedStream = new Readable();
@@ -16953,6 +16954,7 @@ export default async function handler(req, res) {
         pdfPrintedStream.push(null); // End of stream
 
         const remotePrintedPath = `/pdfs/${order_number}-printed.pdf`;
+        console.log(remotePrintedPath, "remotePrintedPath s");
         await client.uploadFrom(pdfPrintedStream, remotePrintedPath);
 
         client.close();
