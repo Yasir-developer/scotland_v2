@@ -80,6 +80,9 @@
 .search-button:hover {
   background-color: #D3D3D3;
 }
+.multi-select{
+  background-color: aqua !important;
+}
 
 
 :root {
