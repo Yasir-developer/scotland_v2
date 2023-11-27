@@ -220,6 +220,7 @@ export default function Home() {
         pagination ? `?page_info=${pagination}` : ""
       }`;
     } else {
+      console.log("Search here");
       url = `${server}/api/listOrder?name=${query}`;
     }
     console.log(url, "all url");
@@ -227,11 +228,6 @@ export default function Home() {
     await axios
       .get(url)
       .then((res) => {
-        // console.log(res.data.data.headers.link, "total response link");
-        // console.log(res.data.data, "overall response");
-
-        // setLoader(false);
-
         if (res.status == 200) {
           console.log(res, "res");
           if (res?.data?.data?.data?.length == 0) {

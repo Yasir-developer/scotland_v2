@@ -7,7 +7,7 @@ export default async function listOrder(req, res) {
     const db = await connectToDatabase();
     const collection = db.collection("config");
     const accessToken = await collection.findOne({});
-    console.log(accessToken, "collection db");
+    // console.log(accessToken, "collection db");
 
     var result;
     const options = {
@@ -17,13 +17,17 @@ export default async function listOrder(req, res) {
       },
     };
     //scotland-titles-app-development.myshopify.com
-    console.log(req.query, "req.quert");
-    const url = `https://scotland-titles-app-development.myshopify.com//admin/api/2023-10/orders.json${
-      req.query.page_info ? `?page_info=${req.query.page_info}` : ""
-    }${req.query.name ? `?name=${req.query.name}` : ""}`;
+    console.log(req.query, "req.quert  ===========");
+    const url = `https://scotland-titles-app-development.myshopify.com/admin/api/2023-10/orders.json${
+      req.query.name
+        ? `?name=${req.query.name}`
+        : req.query.page_info
+        ? `?page_info=${req.query.page_info}`
+        : `?status=any`
+    }`;
 
     console.log(url, "all url");
-    console.log(accessToken.accessToken, "accessToken from orderlist");
+    // console.log(accessToken.accessToken, "accessToken from orderlist");
     await axios
       .get(url, {
         headers: {
@@ -33,7 +37,7 @@ export default async function listOrder(req, res) {
         },
       })
       .then((response) => {
-        // console.log(response.data.orders, "total respons");
+        console.log(response, "total respons");
         result = { data: response.data.orders, headers: response.headers };
       })
       .catch((error) => {

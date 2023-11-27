@@ -3782,11 +3782,14 @@ export default async function handler(req, res) {
 
       //capital Name
       let firstPageNameParts = propObject.p_8727182704913._Name1.split(" ");
+      console.log(firstPageNameParts, "firstPageNameParts");
       var firstPageModifiedName = firstPageNameParts
         .map(
           (part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
         )
         .join(" ");
+
+      console.log(firstPageModifiedName, "firstPageModifiedName");
       const specialCapitalizedOne = capitalizeWords(firstPageModifiedName);
 
       //two name
@@ -16930,8 +16933,8 @@ export default async function handler(req, res) {
       var freeEmblemPackId = 1;
       var discountedEmblemPackedId = 1;
       const desiredOrder = [
-        8727183196433, 8727183065361, 8727183032593, 8727182704913,
-        8950348644625, 8727182868753,
+        8950348644625, 8727183196433, 8727182704913, 8727183032593,
+        8727182868753, 8727183065361,
       ];
       const sortedLineItems = req.body.line_items.sort((a, b) => {
         return (
@@ -16943,7 +16946,7 @@ export default async function handler(req, res) {
 
       const mappedLineItems = sortedLineItems.map((item) => {
         // Your mapping logic here
-        console.log(item, "-----items-----");
+        // console.log(item, "-----items-----");
       });
       sortedLineItems.map((item, index) => {
         // console.log(item, "itemitem");
@@ -16973,9 +16976,19 @@ export default async function handler(req, res) {
             properties:
               item.properties.length > 0
                 ? item.properties
-                : pProperties[`p_8727183196433_${emblemPackId}`],
+                : pProperties[`p_8727183196433_${emblemPackId}`]
+                ? pProperties[`p_8727183196433_${emblemPackId}`]
+                : pProperties[`p_8950348644625_${emblemPackId}`]
+                ? pProperties[`p_8950348644625_${emblemPackId}`]
+                : pProperties[`p_8727182704913_${emblemPackId}`]
+                ? pProperties[`p_8727182704913_${emblemPackId}`]
+                : null,
             quantity: item.quantity,
           };
+          console.log(
+            pProperties["p_" + `${item.product_id}_${emblemPackId}`].properties,
+            "abcd"
+          );
           emblemPackId++;
         } else if (item.product_id == tartanId) {
           pId.push(item.product_id);
@@ -17028,7 +17041,10 @@ export default async function handler(req, res) {
         }
       });
       let ko = Object.keys(pProperties);
-      ko.map((a) => console.log(pProperties[a]));
+      ko.map((a) => {});
+      // console.log(pProperties[a]
+      // )
+
       const specificId = freeTartanId;
       const specificIdTitlePack = titlePackId;
       const specificIdfreeEmblemPack = freeEmblemId;
@@ -17066,8 +17082,6 @@ export default async function handler(req, res) {
               resultObjectTitlePack[obj.name] = obj.value;
             }
           }
-          // size = word[0];
-          // console.log(size, "alllll  size");
 
           if (!namesArrayTitlePacks.includes("_Title2")) {
             const propertiesObj = {
@@ -17111,6 +17125,7 @@ export default async function handler(req, res) {
           titleIncrement++;
           // }
         } else if (productId == emblemId) {
+          console.log("emblem hereeeeee");
           for (
             let i = 0;
             i < pProperties[`p_8727183065361_${embelemIncrement}`].quantity;
@@ -17120,29 +17135,68 @@ export default async function handler(req, res) {
             let namesArrayEmblum = "";
 
             if (
-              pProperties[`p_8727183065361_${embelemIncrement}`].properties
-                .length > 0
+              pProperties[`p_8727183065361_${embelemIncrement}`]?.properties
+                ?.length > 0
             ) {
               if (
-                pProperties[`p_8727183065361_${embelemIncrement}`].properties
+                pProperties[`p_8727183065361_${embelemIncrement}`]?.properties
               ) {
                 namesArrayEmblum = pProperties[
                   `p_8727183065361_${embelemIncrement}`
-                ].properties.map((propItem, index) => propItem.name);
+                ]?.properties.map((propItem, index) => propItem.name);
                 for (const obj of pProperties[
                   `p_8727183065361_${embelemIncrement}`
-                ].properties) {
+                ]?.properties) {
                   resultObjectEmblum[obj.name] = obj.value;
                 }
               }
-            } else {
-              namesArrayEmblum = pProperties[
-                `p_8727183196433_${embelemIncrement}`
-              ].properties.map((propItem, index) => propItem.name);
-              for (const obj of pProperties[
-                `p_8727183196433_${embelemIncrement}`
-              ].properties) {
-                resultObjectEmblum[obj.name] = obj.value;
+            } else if (
+              pProperties[`p_8950348644625_${embelemIncrement}`]?.properties
+                ?.length > 0
+            ) {
+              if (
+                pProperties[`p_8950348644625_${embelemIncrement}`]?.properties
+              ) {
+                namesArrayEmblum = pProperties[
+                  `p_8950348644625_${embelemIncrement}`
+                ]?.properties.map((propItem, index) => propItem.name);
+                for (const obj of pProperties[
+                  `p_8950348644625_${embelemIncrement}`
+                ]?.properties) {
+                  resultObjectEmblum[obj.name] = obj.value;
+                }
+              }
+            } else if (
+              pProperties[`p_8727183196433_${embelemIncrement}`]?.properties
+                .length > 0
+            ) {
+              if (
+                pProperties[`p_8727183196433_${embelemIncrement}`]?.properties
+              ) {
+                namesArrayEmblum = pProperties[
+                  `p_8727183196433_${embelemIncrement}`
+                ]?.properties.map((propItem, index) => propItem.name);
+                for (const obj of pProperties[
+                  `p_8727183196433_${embelemIncrement}`
+                ]?.properties) {
+                  resultObjectEmblum[obj.name] = obj.value;
+                }
+              }
+            } else if (
+              pProperties[`p_8727182704913_${embelemIncrement}`]?.properties
+                ?.length > 0
+            ) {
+              if (
+                pProperties[`p_8727182704913_${embelemIncrement}`]?.properties
+              ) {
+                namesArrayEmblum = pProperties[
+                  `p_8727182704913_${embelemIncrement}`
+                ]?.properties.map((propItem, index) => propItem.name);
+                for (const obj of pProperties[
+                  `p_8727182704913_${embelemIncrement}`
+                ]?.properties) {
+                  resultObjectEmblum[obj.name] = obj.value;
+                }
               }
             }
 
@@ -17380,13 +17434,13 @@ export default async function handler(req, res) {
             discountedonlyPrintedEmblem(propertiesObj);
           } else {
             const propertiesObj = {
-              p_8727182868753_: {
+              p_8727182868753: {
                 _Title1: resultObjectdiscountEmblemPack._Title1,
                 _Name1: resultObjectdiscountEmblemPack._Name1,
                 _Title2: resultObjectdiscountEmblemPack._Title2,
                 _Name2: resultObjectdiscountEmblemPack._Name2,
                 variant:
-                  pProperties[`p_8727182868753__${discountEmblemIncrement}`]
+                  pProperties[`p_8727182868753_${discountEmblemIncrement}`]
                     .variant_title,
 
                 _Date: resultObjectdiscountEmblemPack._Date,
