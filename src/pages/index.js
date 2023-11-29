@@ -33,7 +33,7 @@ export default function Home() {
 
   // const db = connectToDatabase();
 
-  // console.log(db, "db");
+  // console.log("orders>>>>", orders);
 
   useEffect(() => {
     listOrders();
@@ -96,6 +96,7 @@ export default function Home() {
       });
     // }
   };
+
   const handleCheckboxChange = async (id, selectedOptions) => {
     selectedOptions.forEach((option) => {
       console.log(option, "option for each");
@@ -303,6 +304,7 @@ export default function Home() {
       color: state.data.value === "printed" ? "white" : "black",
     }),
   };
+  
   const check = () => {
     if (orders?.length > 0) {
       return orders.map((item, index) => {
@@ -319,6 +321,7 @@ export default function Home() {
           (data) =>
             data.variant_title && data.variant_title.includes("Printed Pack")
         );
+
 
         return (
           <div
