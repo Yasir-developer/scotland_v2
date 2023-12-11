@@ -17438,7 +17438,9 @@ export default async function handler(req, res) {
                 _Title1: resultObjectdiscountEmblemPack._Title1,
                 _Name1: resultObjectdiscountEmblemPack._Name1,
                 _Title2: resultObjectdiscountEmblemPack._Title2,
-                _Name2: resultObjectdiscountEmblemPack._Name2,
+                _Name2: resultObjectdiscountEmblemPack._name2
+                  ? resultObjectdiscountEmblemPack._name2
+                  : resultObjectdiscountEmblemPack._Name2,
                 variant:
                   pProperties[`p_8727182868753_${discountEmblemIncrement}`]
                     .variant_title,
