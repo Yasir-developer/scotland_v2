@@ -31,6 +31,7 @@ export default function Home() {
 
   // Function to check PDF status
   const checkPdfStatus = async (orderNumber) => {
+    console.log(pdfStatuses, "orderNumber for pdf status:"+orderNumber);
     try {
       const response = await fetch(`https://scotlandtitlesapp.com/pdfs/${orderNumber}.pdf`);
       setPdfStatuses(prev => ({ ...prev, [orderNumber]: response.status }));
