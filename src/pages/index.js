@@ -356,7 +356,7 @@ export default function Home() {
               )}
             </div>
             <div style={{ display: "flex", flexDirection: "row" }}>
-              {pdfStatuses[item.order_number] === 404 && (
+              {/* {pdfStatuses[item.order_number] === 404 && ( */}
                 <button
                   className="generate-pdf-button"
                   onClick={() => generatePdf(item.id)}
@@ -364,7 +364,7 @@ export default function Home() {
                 >
                   Generate PDF
                 </button>
-              )}
+              {/* )} */}
               <a
                 href={`https://scotlandtitlesapp.com/pdfs/${item.order_number}.pdf`}
                 download
